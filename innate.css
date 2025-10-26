@@ -1,6 +1,8 @@
-/* Innate Page Specific Styles */
+/* ==========================================
+   INNATE PAGE SPECIFIC STYLES
+   ========================================== */
 
-/* Remove tap highlight on mobile */
+/* Remove tap highlight - prevents blue flash on mobile when tapping elements */
 * {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -8,10 +10,25 @@
     user-select: none;
 }
 
+/* Allow text selection in input fields */
 .dialogue-input {
     -webkit-user-select: text;
     user-select: text;
 }
+
+/*
+   Prevent body scroll and layout shift when menu opens
+   This fixes the extra space issue that occurs when selection menu appears
+*/
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* ==========================================
+   PAGE HEADER SECTION
+   ========================================== */
 
 .page-header {
     display: flex;
@@ -20,6 +37,7 @@
     margin-bottom: 30px;
 }
 
+/* Back button - minimal design without background */
 .back-btn {
     background: transparent;
     border: none;
@@ -30,7 +48,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease; /* Scale on hover instead of background change */
     text-decoration: none;
 }
 
@@ -40,6 +58,7 @@
     color: #ffffff;
 }
 
+/* Scale up on hover for subtle feedback */
 .back-btn:hover {
     transform: scale(1.1);
 }
@@ -52,6 +71,7 @@
     text-align: center;
 }
 
+/* Three-dot menu button - matches back button styling */
 .menu-btn {
     background: transparent;
     border: none;
@@ -75,13 +95,20 @@
     height: 20px;
 }
 
-/* Main Content */
+/* ==========================================
+   MAIN CONTENT AREA
+   ========================================== */
+
+/* Main content wrapper - extra padding at bottom to prevent content from hiding behind fixed bottom nav */
 .main-content {
     padding-bottom: 120px;
     position: relative;
 }
 
-/* Trait Cards */
+/* ==========================================
+   TRAIT CARDS (Main category cards)
+   ========================================== */
+
 .trait-card {
     margin-bottom: 15px;
     padding: 20px;
@@ -102,41 +129,99 @@
     margin: 0;
 }
 
+/* Hide expand icon (arrows removed from design) */
 .expand-icon {
     display: none;
 }
 
-/* Subtraits Container */
+/* ==========================================
+   COLLAPSED SUMMARY VIEW
+   Shows selected answer when trait is collapsed
+   ========================================== */
+
+/* Container for summary info shown below header when collapsed */
+.trait-summary {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* The main answer text (e.g., "Flexible") */
+.trait-summary-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(127, 255, 212, 0.9); /* Cyan color to indicate it's a filled value */
+}
+
+/* Action indicator (Improve/Modify/Accept) */
+.trait-summary-action {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* Color coding for different actions */
+.trait-summary-action.improve {
+    color: #64FF96;
+    background: rgba(100, 255, 150, 0.15);
+}
+
+.trait-summary-action.modify {
+    color: #FFC864;
+    background: rgba(255, 200, 100, 0.15);
+}
+
+.trait-summary-action.accept {
+    color: #7FFFD4;
+    background: rgba(127, 255, 212, 0.15);
+}
+
+/* ==========================================
+   SUBTRAIT CONTAINER
+   Container that holds subtrait cards, expands/collapses
+   ========================================== */
+
 .subtraits-container {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease; /* Smooth expand/collapse animation */
 }
 
+/* When trait card is expanded, allow container to grow */
 .trait-card.expanded .subtraits-container {
     max-height: 1000px;
 }
 
-/* Subtrait Cards */
+/* ==========================================
+   SUBTRAIT CARDS (Individual selection items)
+   ========================================== */
+
 .subtrait-card {
     margin-top: 12px;
     padding: 16px 18px;
     cursor: pointer;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Left-align since we removed right arrow */
     align-items: center;
     position: relative;
     min-height: 50px;
     opacity: 0;
     transform: translateY(-5px);
+    /* Smooth fade-in when expanded, includes background transition for hover/click effects */
     transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
 }
 
+/* Fade in subtraits when parent trait card is expanded */
 .trait-card.expanded .subtrait-card {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Prominent styling for Core Personality traits (slightly taller) */
 .subtrait-card.prominent {
     min-height: 56px;
     padding: 18px 20px;
@@ -148,28 +233,45 @@
     font-weight: 500;
 }
 
+/* Cyan color for completed subtrait labels */
 .subtrait-card.completed span {
     font-size: 16px;
     color: #7FFFD4;
 }
 
+/* Hide selection arrow icons (removed from design) */
 .select-icon {
     display: none;
 }
 
+/* Subtle hover effect */
 .subtrait-card:hover {
     background: rgba(255, 255, 255, 0.12);
 }
 
+/* ==========================================
+   SUBTRAIT CLICK ANIMATION
+   Visual feedback when subtrait is clicked to open menu
+   ========================================== */
+
+/*
+   This class is added when subtrait is clicked
+   Creates clear visual connection between tile and opening menu
+   Tile scales up, glows cyan, and stays highlighted while menu is open
+*/
 .subtrait-card.menu-opening {
-    transform: scale(1.02);
-    background: rgba(127, 255, 212, 0.2);
-    border: 2px solid rgba(127, 255, 212, 0.5);
-    box-shadow: 0 0 20px rgba(127, 255, 212, 0.3);
-    z-index: 1000;
+    transform: scale(1.02); /* Slight scale up */
+    background: rgba(127, 255, 212, 0.2); /* Cyan background */
+    border: 2px solid rgba(127, 255, 212, 0.5); /* Cyan border */
+    box-shadow: 0 0 20px rgba(127, 255, 212, 0.3); /* Cyan glow */
+    z-index: 1000; /* Keep above overlay so it stays visible */
 }
 
-/* Selection Menu */
+/* ==========================================
+   SELECTION MENU
+   Popup menu that appears when clicking a subtrait
+   ========================================== */
+
 .selection-menu {
     position: fixed;
     left: 20px;
@@ -180,29 +282,40 @@
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
-    max-height: 70vh;
-    overflow-y: auto;
-    z-index: 2000;
+    max-height: 70vh; /* Maximum 70% of viewport height */
+    overflow-y: auto; /* Scroll if content exceeds max height */
+    z-index: 2000; /* Above overlay and highlighted tile */
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none; /* Invisible and non-interactive when not active */
+    /* Elastic bounce effect makes it clear where menu comes from */
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform-origin: top center;
+    transform-origin: top center; /* Default origin, updated dynamically */
 }
 
+/*
+   Dropdown animation - menu appears below the clicked tile
+   Starts scaled down and offset upward, grows to full size
+*/
 .selection-menu.dropdown {
     transform: translateY(-20px) scale(0.9);
 }
 
+/*
+   Dropup animation - menu appears above the clicked tile
+   Starts scaled down and offset downward, grows to full size
+   Origin set to bottom so it grows upward from the tile
+*/
 .selection-menu.dropup {
     transform: translateY(20px) scale(0.9);
     transform-origin: bottom center;
 }
 
+/* Active state - menu is visible and interactive */
 .selection-menu.active {
     opacity: 1;
     pointer-events: all;
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1); /* Full size, no offset */
 }
 
 .menu-option {
