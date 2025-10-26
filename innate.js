@@ -141,6 +141,9 @@ function showSelectionMenu(subtraitCard) {
         return;
     }
 
+    // Prevent body scroll when menu opens
+    document.body.style.overflow = 'hidden';
+
     // Add animation class to subtrait card
     subtraitCard.classList.add('menu-opening');
 
@@ -202,9 +205,14 @@ function closeSelectionMenu() {
     menu.classList.remove('active');
     overlay.classList.remove('active');
 
-    // Remove animation class from subtrait
+    // Restore body scroll
+    document.body.style.overflow = '';
+
+    // Remove animation class from subtrait with delay
     if (currentSubtrait) {
-        currentSubtrait.classList.remove('menu-opening');
+        setTimeout(() => {
+            currentSubtrait.classList.remove('menu-opening');
+        }, 400);
     }
 }
 
