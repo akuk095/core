@@ -1,11 +1,77 @@
+// Selection menu data for each subtrait
+const selectionData = {
+    'optimism-pessimism': [
+        { value: 'highly-optimistic', text: 'Highly Optimistic – See the positive in nearly every situation.' },
+        { value: 'moderately-optimistic', text: 'Moderately Optimistic – Generally hopeful, with occasional doubts.' },
+        { value: 'realistic', text: 'Realistic/Pragmatic – Balance hope with practical expectations.' },
+        { value: 'moderately-pessimistic', text: 'Moderately Pessimistic – Often anticipate problems but can adjust.' },
+        { value: 'highly-pessimistic', text: 'Highly Pessimistic – Expect the worst and struggles to see the positive.' }
+    ],
+    'introversion-extroversion': [
+        { value: 'highly-extroverted', text: 'Highly Extroverted – Energised by social interaction; enjoy crowds and engagement.' },
+        { value: 'moderately-extroverted', text: 'Moderately Extroverted – Socially confident, enjoy groups but needs some alone time.' },
+        { value: 'ambiverted', text: 'Ambiverted – Comfortable alone or in groups; flexible social energy.' },
+        { value: 'moderately-introverted', text: 'Moderately Introverted – Prefer small groups and one-on-one interactions.' },
+        { value: 'highly-introverted', text: 'Highly Introverted – Drain quickly in social situations; need significant alone time.' }
+    ],
+    'resilience': [
+        { value: 'exceptionally-resilient', text: 'Exceptionally Resilient – Bounce back quickly, thrive under pressure.' },
+        { value: 'resilient', text: 'Resilient – Handle setbacks reasonably well with minor recovery time.' },
+        { value: 'moderately-resilient', text: 'Moderately Resilient – Recover after stress but need support.' },
+        { value: 'low-resilience', text: 'Low Resilience – Struggle to recover from setbacks.' },
+        { value: 'highly-vulnerable', text: 'Highly Vulnerable – Easily overwhelmed by stress; slow recovery.' }
+    ],
+    'stress-tolerance': [
+        { value: 'high', text: 'High Stress Tolerance – Function effectively under high pressure.' },
+        { value: 'moderate', text: 'Moderate Stress Tolerance – Can handle stress in short bursts, struggles under chronic stress.' },
+        { value: 'low', text: 'Low Stress Tolerance – Find most stressors challenging, performance declines under pressure.' }
+    ],
+    'talents': [
+        { value: 'analytical', text: 'Analytical – Strong pattern recognition and problem-solving.' },
+        { value: 'creative', text: 'Creative – Excel at generating original ideas or artistic expression.' },
+        { value: 'practical', text: 'Practical – Skilled at applying knowledge to real-world tasks.' },
+        { value: 'mechanical', text: 'Mechanical/Technical – Aptitude for tools, machines, or technical systems.' },
+        { value: 'social', text: 'Social/Emotional – Naturally empathetic and skilled with people.' },
+        { value: 'curious', text: 'Curious – Drawn to learning and exploring new concepts.' },
+        { value: 'detail-oriented', text: 'Detail-Oriented – Notice small but significant details.' },
+        { value: 'big-picture', text: 'Big-Picture Thinker – Focused on overarching patterns, vision, or strategy.' },
+        { value: 'intuitive', text: 'Intuitive – Rely on gut feeling or instinct for decisions.' },
+        { value: 'disciplined', text: 'Disciplined – Strong self-control, persistence, and organisation.' }
+    ],
+    'curiosity': [
+        { value: 'curious', text: 'Curious – Naturally inquisitive, enjoy exploring ideas.' },
+        { value: 'moderately-curious', text: 'Moderately Curious – Interested in learning, selectively engaged.' },
+        { value: 'low-curiosity', text: 'Low Curiosity – Prefer routine or familiar knowledge.' }
+    ],
+    'patience': [
+        { value: 'patient', text: 'Patient – Can wait and work through processes without frustration.' },
+        { value: 'moderately-patient', text: 'Moderately Patient – Patience varies by context.' },
+        { value: 'impatient', text: 'Impatient – Easily frustrated by delay or repetition.' }
+    ],
+    'courage': [
+        { value: 'courageous', text: 'Courageous – Willing to take risks or stand for beliefs.' },
+        { value: 'moderately-courageous', text: 'Moderately Courageous – Courage depends on context or stakes.' },
+        { value: 'cautious', text: 'Cautious/Timid – Avoids risk and confrontation where possible.' }
+    ],
+    'empathy': [
+        { value: 'empathetic', text: 'Empathetic – Strong understanding of others\' feelings.' },
+        { value: 'moderately-empathetic', text: 'Moderately Empathetic – Sympathetic but sometimes detached.' },
+        { value: 'low-empathy', text: 'Low Empathy – Focused on self or logic rather than emotions.' }
+    ],
+    'adaptability': [
+        { value: 'adaptable', text: 'Adaptable – Easily adjust to new conditions.' },
+        { value: 'moderately-adaptable', text: 'Moderately Adaptable – Can adjust but may resist change initially.' },
+        { value: 'rigid', text: 'Rigid – Prefer routine and struggles with change.' },
+        { value: 'flexible', text: 'Flexible – Open to adjusting methods or goals when necessary.' }
+    ]
+};
+
 // State management
-let currentTrait = null;
 let currentSubtrait = null;
 let currentSelection = null;
-let dialogueStep = 0;
 let userResponses = {};
 
-// Load saved data from localStorage
+// Load saved data
 function loadUserData() {
     const saved = localStorage.getItem('innateData');
     if (saved) {
@@ -14,7 +80,7 @@ function loadUserData() {
     }
 }
 
-// Save data to localStorage
+// Save data
 function saveUserData() {
     localStorage.setItem('innateData', JSON.stringify(userResponses));
 }
@@ -30,9 +96,8 @@ function setupEventListeners() {
     document.querySelectorAll('.trait-card').forEach(card => {
         const header = card.querySelector('.trait-header');
         header.addEventListener('click', function(e) {
-            if (!e.target.closest('.subtrait-card')) {
-                toggleTraitCard(card);
-            }
+            e.stopPropagation();
+            toggleTraitCard(card);
         });
     });
 
@@ -63,65 +128,77 @@ function toggleTraitCard(card) {
     });
 
     // Toggle current card
-    if (isExpanded) {
-        card.classList.remove('expanded');
-    } else {
-        card.classList.add('expanded');
-    }
+    card.classList.toggle('expanded');
 }
 
 function showSelectionMenu(subtraitCard) {
     currentSubtrait = subtraitCard;
-    const menu = subtraitCard.querySelector('.selection-menu');
+    const subtraitId = subtraitCard.getAttribute('data-subtrait');
+    const options = selectionData[subtraitId];
 
-    // Create overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'menu-overlay';
-    document.body.appendChild(overlay);
+    if (!options) {
+        console.error('No selection data for:', subtraitId);
+        return;
+    }
+
+    const menu = document.querySelector('.selection-menu');
+    const overlay = document.querySelector('.menu-overlay');
+
+    // Clear and populate menu
+    menu.innerHTML = '';
+    options.forEach(option => {
+        const optionEl = document.createElement('div');
+        optionEl.className = 'menu-option';
+        optionEl.textContent = option.text;
+        optionEl.dataset.value = option.value;
+        optionEl.addEventListener('click', () => selectOption(option));
+        menu.appendChild(optionEl);
+    });
+
+    // Position menu (dropdown or dropup based on space)
+    const rect = subtraitCard.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+
+    if (spaceBelow > 300) {
+        // Dropdown
+        menu.style.top = (rect.bottom + 10) + 'px';
+        menu.style.bottom = 'auto';
+    } else {
+        // Dropup
+        menu.style.bottom = (window.innerHeight - rect.top + 10) + 'px';
+        menu.style.top = 'auto';
+    }
 
     // Show menu
-    setTimeout(() => {
-        overlay.classList.add('active');
-        menu.classList.add('active');
-    }, 10);
-
-    // Setup menu option clicks
-    menu.querySelectorAll('.menu-option').forEach(option => {
-        option.addEventListener('click', function() {
-            const selectedText = this.textContent.trim();
-            const selectedValue = this.getAttribute('data-value');
-
-            // Extract main word (before the dash)
-            const mainWord = selectedText.split('–')[0].trim();
-
-            currentSelection = {
-                value: selectedValue,
-                mainWord: mainWord,
-                fullText: selectedText
-            };
-
-            // Close menu
-            menu.classList.remove('active');
-            overlay.classList.remove('active');
-            setTimeout(() => overlay.remove(), 300);
-
-            // Start dialogue sequence
-            startDialogueSequence(subtraitCard);
-        });
-    });
+    overlay.classList.add('active');
+    menu.classList.add('active');
 
     // Close on overlay click
-    overlay.addEventListener('click', function() {
-        menu.classList.remove('active');
-        overlay.classList.remove('active');
-        setTimeout(() => overlay.remove(), 300);
-    });
+    overlay.onclick = closeSelectionMenu;
 }
 
-function startDialogueSequence(subtraitCard) {
-    dialogueStep = 0;
-    const subtraitId = subtraitCard.getAttribute('data-subtrait');
+function closeSelectionMenu() {
+    const menu = document.querySelector('.selection-menu');
+    const overlay = document.querySelector('.menu-overlay');
+    menu.classList.remove('active');
+    overlay.classList.remove('active');
+}
 
+function selectOption(option) {
+    // Extract main word (before dash)
+    const mainWord = option.text.split('–')[0].trim();
+
+    currentSelection = {
+        value: option.value,
+        mainWord: mainWord,
+        fullText: option.text
+    };
+
+    closeSelectionMenu();
+
+    // Start dialogue sequence
+    const subtraitId = currentSubtrait.getAttribute('data-subtrait');
     userResponses[subtraitId] = {
         selection: currentSelection,
         reason: '',
@@ -129,45 +206,44 @@ function startDialogueSequence(subtraitCard) {
         plan: ''
     };
 
-    showDialogue1(); // Why do you feel that way?
+    showDialogue1();
 }
 
 function showDialogue1() {
-    const dialogue = createDialogueBox(
+    showDialogue(
         'Why do you feel that way?',
-        'textarea',
+        true,
         [
-            { text: 'Done', action: onDialogue1Done, primary: true },
-            { text: 'Cancel', action: closeDialogue, primary: false }
+            { text: 'Done', primary: true, onClick: (input) => {
+                const subtraitId = currentSubtrait.getAttribute('data-subtrait');
+                userResponses[subtraitId].reason = input.value.trim();
+                if (userResponses[subtraitId].reason) {
+                    closeDialogue();
+                    showDialogue2();
+                }
+            }},
+            { text: 'Cancel', primary: false, onClick: () => {
+                const subtraitId = currentSubtrait.getAttribute('data-subtrait');
+                delete userResponses[subtraitId];
+                closeDialogue();
+            }}
         ]
     );
-    showDialogueOverlay(dialogue);
-}
-
-function onDialogue1Done(input) {
-    const subtraitId = currentSubtrait.getAttribute('data-subtrait');
-    userResponses[subtraitId].reason = input.value.trim();
-    closeDialogue();
-
-    if (userResponses[subtraitId].reason) {
-        showDialogue2();
-    }
 }
 
 function showDialogue2() {
-    const dialogue = createDialogueBox(
+    showDialogue(
         'Will you like to:',
-        'buttons',
+        false,
         [
-            { text: 'Improve', action: () => onDialogue2Done('improve'), class: 'improve' },
-            { text: 'Modify', action: () => onDialogue2Done('modify'), class: 'modify' },
-            { text: 'Accept it', action: () => onDialogue2Done('accept'), class: 'accept' }
+            { text: 'Improve', class: 'improve', onClick: () => onActionSelected('improve') },
+            { text: 'Modify', class: 'modify', onClick: () => onActionSelected('modify') },
+            { text: 'Accept it', class: 'accept', onClick: () => onActionSelected('accept') }
         ]
     );
-    showDialogueOverlay(dialogue);
 }
 
-function onDialogue2Done(action) {
+function onActionSelected(action) {
     const subtraitId = currentSubtrait.getAttribute('data-subtrait');
     userResponses[subtraitId].action = action;
     closeDialogue();
@@ -175,67 +251,62 @@ function onDialogue2Done(action) {
 }
 
 function showDialogue3() {
-    const dialogue = createDialogueBox(
+    showDialogue(
         'How do you plan to achieve that?',
-        'textarea',
+        true,
         [
-            { text: 'Done', action: onDialogue3Done, primary: true }
+            { text: 'Done', primary: true, onClick: (input) => {
+                const subtraitId = currentSubtrait.getAttribute('data-subtrait');
+                userResponses[subtraitId].plan = input.value.trim();
+                if (userResponses[subtraitId].plan) {
+                    closeDialogue();
+                    showDialogue4();
+                }
+            }}
         ]
     );
-    showDialogueOverlay(dialogue);
-}
-
-function onDialogue3Done(input) {
-    const subtraitId = currentSubtrait.getAttribute('data-subtrait');
-    userResponses[subtraitId].plan = input.value.trim();
-    closeDialogue();
-
-    if (userResponses[subtraitId].plan) {
-        showDialogue4();
-    }
 }
 
 function showDialogue4() {
-    const dialogue = createDialogueBox(
+    showDialogue(
         'Do you want to open the toolbox?',
-        'buttons',
+        false,
         [
-            { text: 'Yes', action: onToolboxYes, primary: true },
-            { text: 'No', action: onToolboxNo, primary: false }
+            { text: 'Yes', primary: true, onClick: () => {
+                closeDialogue();
+                saveUserData();
+                renderCompletedSubtrait(currentSubtrait);
+                // TODO: Navigate to toolbox
+                console.log('Navigate to toolbox');
+            }},
+            { text: 'No', primary: false, onClick: () => {
+                closeDialogue();
+                saveUserData();
+                renderCompletedSubtrait(currentSubtrait);
+            }}
         ]
     );
-    showDialogueOverlay(dialogue);
 }
 
-function onToolboxYes() {
-    closeDialogue();
-    saveUserData();
-    renderCompletedSubtrait(currentSubtrait);
-    // TODO: Navigate to toolbox (functionality to be implemented later)
-    console.log('Navigate to toolbox');
-}
+function showDialogue(title, hasInput, buttons) {
+    const overlay = document.createElement('div');
+    overlay.className = 'dialogue-overlay active';
+    overlay.id = 'current-dialogue';
 
-function onToolboxNo() {
-    closeDialogue();
-    saveUserData();
-    renderCompletedSubtrait(currentSubtrait);
-}
-
-function createDialogueBox(title, type, buttons) {
-    const dialogue = document.createElement('div');
-    dialogue.className = 'dialogue-box';
+    const box = document.createElement('div');
+    box.className = 'dialogue-box';
 
     const titleEl = document.createElement('div');
     titleEl.className = 'dialogue-title';
     titleEl.textContent = title;
-    dialogue.appendChild(titleEl);
+    box.appendChild(titleEl);
 
     let inputEl = null;
-    if (type === 'textarea') {
+    if (hasInput) {
         inputEl = document.createElement('textarea');
         inputEl.className = 'dialogue-input';
         inputEl.placeholder = 'Type your answer here...';
-        dialogue.appendChild(inputEl);
+        box.appendChild(inputEl);
     }
 
     const buttonsContainer = document.createElement('div');
@@ -245,37 +316,27 @@ function createDialogueBox(title, type, buttons) {
         const button = document.createElement('button');
         button.className = 'dialogue-btn';
         if (btn.class) button.classList.add(btn.class);
-        if (!btn.primary) button.classList.add('secondary');
+        if (btn.primary === false) button.classList.add('secondary');
         button.textContent = btn.text;
         button.addEventListener('click', () => {
-            if (type === 'textarea' && inputEl) {
-                btn.action(inputEl);
+            if (hasInput && inputEl) {
+                btn.onClick(inputEl);
             } else {
-                btn.action();
+                btn.onClick();
             }
         });
         buttonsContainer.appendChild(button);
     });
 
-    dialogue.appendChild(buttonsContainer);
-    return dialogue;
-}
-
-function showDialogueOverlay(dialogueBox) {
-    const overlay = document.createElement('div');
-    overlay.className = 'dialogue-overlay';
-    overlay.id = 'current-dialogue';
-    overlay.appendChild(dialogueBox);
+    box.appendChild(buttonsContainer);
+    overlay.appendChild(box);
     document.body.appendChild(overlay);
-
-    setTimeout(() => overlay.classList.add('active'), 10);
 }
 
 function closeDialogue() {
     const overlay = document.getElementById('current-dialogue');
     if (overlay) {
-        overlay.classList.remove('active');
-        setTimeout(() => overlay.remove(), 300);
+        overlay.remove();
     }
 }
 
@@ -286,11 +347,8 @@ function renderCompletedSubtrait(subtraitCard) {
     if (!data) return;
 
     subtraitCard.classList.add('completed');
-
-    // Clear existing content
     subtraitCard.innerHTML = '';
 
-    // Create display elements
     const valueEl = document.createElement('div');
     valueEl.className = 'subtrait-value';
     valueEl.textContent = data.selection.mainWord;
@@ -322,85 +380,60 @@ function renderCompletedSubtraits() {
 }
 
 function showResetDialogue(subtraitId, subtraitCard) {
-    const dialogue = createDialogueBox(
+    showDialogue(
         'Do you want to reset and change your selection?',
-        'buttons',
+        false,
         [
-            { text: 'Yes', action: () => onResetYes(subtraitId, subtraitCard), primary: true },
-            { text: 'Cancel', action: closeDialogue, primary: false },
-            { text: 'Edit answers', action: () => onEditAnswers(subtraitId, subtraitCard), class: 'modify' }
+            { text: 'Yes', primary: true, onClick: () => resetSubtrait(subtraitId, subtraitCard) },
+            { text: 'Cancel', primary: false, onClick: closeDialogue },
+            { text: 'Edit answers', class: 'modify', onClick: () => editAnswers(subtraitId, subtraitCard) }
         ]
     );
-    showDialogueOverlay(dialogue);
 }
 
-function onResetYes(subtraitId, subtraitCard) {
+function resetSubtrait(subtraitId, subtraitCard) {
     delete userResponses[subtraitId];
     saveUserData();
     closeDialogue();
 
-    // Reset the subtrait card
+    // Reset the card
     subtraitCard.classList.remove('completed');
+    const originalText = subtraitCard.getAttribute('data-original-text') || 'Select';
     subtraitCard.innerHTML = `
-        <span>${subtraitCard.getAttribute('data-original-text') || 'Select'}</span>
+        <span>${originalText}</span>
         <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 5l7 7-7 7"/>
         </svg>
     `;
-
-    // Re-add selection menu
-    const menu = document.createElement('div');
-    menu.className = 'selection-menu';
-    // Add menu options based on subtrait type
-    subtraitCard.appendChild(menu);
 }
 
-function onEditAnswers(subtraitId, subtraitCard) {
+function editAnswers(subtraitId, subtraitCard) {
     closeDialogue();
     currentSubtrait = subtraitCard;
-
     const data = userResponses[subtraitId];
     currentSelection = data.selection;
 
     // Show edit dialogue for reason
-    showEditDialogue1(subtraitId);
+    showDialogue(
+        'Edit: Why do you feel that way?',
+        true,
+        [
+            { text: 'Done', primary: true, onClick: (input) => {
+                userResponses[subtraitId].reason = input.value.trim();
+                closeDialogue();
+                showDialogue2(); // Continue to next dialogue
+            }}
+        ]
+    );
+
+    // Pre-fill the input
+    setTimeout(() => {
+        const input = document.querySelector('.dialogue-input');
+        if (input) input.value = data.reason;
+    }, 10);
 }
 
-function showEditDialogue1(subtraitId) {
-    const data = userResponses[subtraitId];
-
-    const dialogue = document.createElement('div');
-    dialogue.className = 'dialogue-box';
-
-    const title = document.createElement('div');
-    title.className = 'dialogue-title';
-    title.textContent = 'Edit: Why do you feel that way?';
-    dialogue.appendChild(title);
-
-    const input = document.createElement('textarea');
-    input.className = 'dialogue-input';
-    input.value = data.reason;
-    dialogue.appendChild(input);
-
-    const buttonsContainer = document.createElement('div');
-    buttonsContainer.className = 'dialogue-buttons';
-
-    const doneBtn = document.createElement('button');
-    doneBtn.className = 'dialogue-btn';
-    doneBtn.textContent = 'Done';
-    doneBtn.addEventListener('click', () => {
-        userResponses[subtraitId].reason = input.value.trim();
-        closeDialogue();
-        showDialogue2(); // Continue to next dialogue
-    });
-
-    buttonsContainer.appendChild(doneBtn);
-    dialogue.appendChild(buttonsContainer);
-
-    showDialogueOverlay(dialogue);
-}
-
-// Store original text for reset functionality
+// Store original text for reset
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.subtrait-card').forEach(card => {
         const originalText = card.querySelector('span')?.textContent;
