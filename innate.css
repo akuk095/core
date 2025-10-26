@@ -99,13 +99,13 @@
     padding: 16px 18px;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     min-height: 50px;
     opacity: 0;
     transform: translateY(-5px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
 }
 
 .trait-card.expanded .subtrait-card {
@@ -130,19 +130,11 @@
 }
 
 .select-icon {
-    width: 18px;
-    height: 18px;
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease;
+    display: none;
 }
 
 .subtrait-card:hover {
     background: rgba(255, 255, 255, 0.12);
-}
-
-.subtrait-card:hover .select-icon {
-    color: #7FFFD4;
-    transform: translateX(3px);
 }
 
 .subtrait-card.menu-opening {
