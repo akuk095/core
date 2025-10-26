@@ -1,5 +1,18 @@
 /* Innate Page Specific Styles */
 
+/* Remove tap highlight on mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.dialogue-input {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -37,6 +50,11 @@
     color: #ffffff;
     flex: 1;
     text-align: center;
+}
+
+/* Main Content */
+.main-content {
+    padding-bottom: 120px;
 }
 
 /* Trait Cards */
@@ -125,6 +143,11 @@
 .subtrait-card:hover .select-icon {
     color: #7FFFD4;
     transform: translateX(3px);
+}
+
+.subtrait-card.menu-opening {
+    transform: scale(0.98);
+    background: rgba(127, 255, 212, 0.1);
 }
 
 /* Selection Menu */

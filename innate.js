@@ -141,6 +141,9 @@ function showSelectionMenu(subtraitCard) {
         return;
     }
 
+    // Add animation class to subtrait card
+    subtraitCard.classList.add('menu-opening');
+
     const menu = document.querySelector('.selection-menu');
     const overlay = document.querySelector('.menu-overlay');
 
@@ -159,19 +162,30 @@ function showSelectionMenu(subtraitCard) {
     const rect = subtraitCard.getBoundingClientRect();
     const spaceBelow = window.innerHeight - rect.bottom;
     const spaceAbove = rect.top;
+    const bottomNavHeight = 100; // Approximate height of bottom nav
+    const menuMaxHeight = window.innerHeight * 0.6; // 60vh
 
-    if (spaceBelow > 300) {
-        // Dropdown
-        menu.style.top = (rect.bottom + 10) + 'px';
+    // Ensure menu doesn't go off screen
+    if (spaceBelow > menuMaxHeight + 20) {
+        // Dropdown - enough space below
+        menu.style.top = Math.min(rect.bottom + 10, window.innerHeight - menuMaxHeight - 20) + 'px';
         menu.style.bottom = 'auto';
         menu.classList.add('dropdown');
         menu.classList.remove('dropup');
-    } else {
-        // Dropup
-        menu.style.bottom = (window.innerHeight - rect.top + 10) + 'px';
+    } else if (spaceAbove > menuMaxHeight + 20) {
+        // Dropup - enough space above
+        const bottomPosition = Math.max(window.innerHeight - rect.top + 10, bottomNavHeight + 20);
+        menu.style.bottom = bottomPosition + 'px';
         menu.style.top = 'auto';
         menu.classList.add('dropup');
         menu.classList.remove('dropdown');
+    } else {
+        // Not enough space either way - center it with padding
+        menu.style.top = '80px';
+        menu.style.bottom = (bottomNavHeight + 20) + 'px';
+        menu.style.maxHeight = 'none';
+        menu.classList.add('dropdown');
+        menu.classList.remove('dropup');
     }
 
     // Show menu with slight delay for animation
@@ -187,6 +201,11 @@ function closeSelectionMenu() {
     const overlay = document.querySelector('.menu-overlay');
     menu.classList.remove('active');
     overlay.classList.remove('active');
+
+    // Remove animation class from subtrait
+    if (currentSubtrait) {
+        currentSubtrait.classList.remove('menu-opening');
+    }
 }
 
 function selectOption(option) {
