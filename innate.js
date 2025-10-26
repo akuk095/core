@@ -164,15 +164,19 @@ function showSelectionMenu(subtraitCard) {
         // Dropdown
         menu.style.top = (rect.bottom + 10) + 'px';
         menu.style.bottom = 'auto';
+        menu.classList.add('dropdown');
+        menu.classList.remove('dropup');
     } else {
         // Dropup
         menu.style.bottom = (window.innerHeight - rect.top + 10) + 'px';
         menu.style.top = 'auto';
+        menu.classList.add('dropup');
+        menu.classList.remove('dropdown');
     }
 
-    // Show menu
+    // Show menu with slight delay for animation
     overlay.classList.add('active');
-    menu.classList.add('active');
+    setTimeout(() => menu.classList.add('active'), 10);
 
     // Close on overlay click
     overlay.onclick = closeSelectionMenu;
