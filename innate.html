@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innate - Core</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="innate.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="page-header">
+            <a href="index.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <h1 class="page-title">Innate</h1>
+            <button class="menu-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="5" r="1"/>
+                    <circle cx="12" cy="12" r="1"/>
+                    <circle cx="12" cy="19" r="1"/>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Temperament -->
+            <div class="trait-card glass-tile" data-trait="temperament">
+                <div class="trait-header">
+                    <h3>Temperament</h3>
+                    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="subtraits-container">
+                    <div class="subtrait-card glass-tile" data-subtrait="optimism-pessimism">
+                        <span>Optimism/Pessimism</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="highly-optimistic">Highly Optimistic – See the positive in nearly every situation.</div>
+                            <div class="menu-option" data-value="moderately-optimistic">Moderately Optimistic – Generally hopeful, with occasional doubts.</div>
+                            <div class="menu-option" data-value="realistic">Realistic/Pragmatic – Balance hope with practical expectations.</div>
+                            <div class="menu-option" data-value="moderately-pessimistic">Moderately Pessimistic – Often anticipate problems but can adjust.</div>
+                            <div class="menu-option" data-value="highly-pessimistic">Highly Pessimistic – Expect the worst and struggles to see the positive.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disposition -->
+            <div class="trait-card glass-tile" data-trait="disposition">
+                <div class="trait-header">
+                    <h3>Disposition</h3>
+                    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="subtraits-container">
+                    <div class="subtrait-card glass-tile" data-subtrait="introversion-extroversion">
+                        <span>Introversion/Extroversion</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="highly-extroverted">Highly Extroverted – Energised by social interaction; enjoy crowds and engagement.</div>
+                            <div class="menu-option" data-value="moderately-extroverted">Moderately Extroverted – Socially confident, enjoy groups but needs some alone time.</div>
+                            <div class="menu-option" data-value="ambiverted">Ambiverted – Comfortable alone or in groups; flexible social energy.</div>
+                            <div class="menu-option" data-value="moderately-introverted">Moderately Introverted – Prefer small groups and one-on-one interactions.</div>
+                            <div class="menu-option" data-value="highly-introverted">Highly Introverted – Drain quickly in social situations; need significant alone time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Natural Resilience -->
+            <div class="trait-card glass-tile" data-trait="resilience">
+                <div class="trait-header">
+                    <h3>Natural Resilience</h3>
+                    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="subtraits-container">
+                    <div class="subtrait-card glass-tile" data-subtrait="resilience">
+                        <span>Resilience</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="exceptionally-resilient">Exceptionally Resilient – Bounce back quickly, thrive under pressure.</div>
+                            <div class="menu-option" data-value="resilient">Resilient – Handle setbacks reasonably well with minor recovery time.</div>
+                            <div class="menu-option" data-value="moderately-resilient">Moderately Resilient – Recover after stress but need support.</div>
+                            <div class="menu-option" data-value="low-resilience">Low Resilience – Struggle to recover from setbacks.</div>
+                            <div class="menu-option" data-value="highly-vulnerable">Highly Vulnerable – Easily overwhelmed by stress; slow recovery.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stress Tolerance -->
+            <div class="trait-card glass-tile" data-trait="stress-tolerance">
+                <div class="trait-header">
+                    <h3>Stress Tolerance</h3>
+                    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="subtraits-container">
+                    <div class="subtrait-card glass-tile" data-subtrait="stress-tolerance">
+                        <span>Stress Tolerance</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="high">High Stress Tolerance – Function effectively under high pressure.</div>
+                            <div class="menu-option" data-value="moderate">Moderate Stress Tolerance – Can handle stress in short bursts, struggles under chronic stress.</div>
+                            <div class="menu-option" data-value="low">Low Stress Tolerance – Find most stressors challenging, performance declines under pressure.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Natural Talents & Inclinations -->
+            <div class="trait-card glass-tile" data-trait="talents">
+                <div class="trait-header">
+                    <h3>Natural Talents & Inclinations</h3>
+                    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="subtraits-container">
+                    <div class="subtrait-card glass-tile" data-subtrait="talents">
+                        <span>Natural Talents & Inclinations</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="analytical">Analytical – Strong pattern recognition and problem-solving.</div>
+                            <div class="menu-option" data-value="creative">Creative – Excel at generating original ideas or artistic expression.</div>
+                            <div class="menu-option" data-value="practical">Practical – Skilled at applying knowledge to real-world tasks.</div>
+                            <div class="menu-option" data-value="mechanical">Mechanical/Technical – Aptitude for tools, machines, or technical systems.</div>
+                            <div class="menu-option" data-value="social">Social/Emotional – Naturally empathetic and skilled with people.</div>
+                            <div class="menu-option" data-value="curious">Curious – Drawn to learning and exploring new concepts.</div>
+                            <div class="menu-option" data-value="detail-oriented">Detail-Oriented – Notice small but significant details.</div>
+                            <div class="menu-option" data-value="big-picture">Big-Picture Thinker – Focused on overarching patterns, vision, or strategy.</div>
+                            <div class="menu-option" data-value="intuitive">Intuitive – Rely on gut feeling or instinct for decisions.</div>
+                            <div class="menu-option" data-value="disciplined">Disciplined – Strong self-control, persistence, and organisation.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Personality Traits -->
+            <div class="trait-card glass-tile" data-trait="personality">
+                <div class="trait-header">
+                    <h3>Core Personality Traits</h3>
+                    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div class="subtraits-container">
+                    <div class="subtrait-card glass-tile prominent" data-subtrait="curiosity">
+                        <span>Curiosity</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="curious">Curious – Naturally inquisitive, enjoy exploring ideas.</div>
+                            <div class="menu-option" data-value="moderately-curious">Moderately Curious – Interested in learning, selectively engaged.</div>
+                            <div class="menu-option" data-value="low-curiosity">Low Curiosity – Prefer routine or familiar knowledge.</div>
+                        </div>
+                    </div>
+                    <div class="subtrait-card glass-tile prominent" data-subtrait="patience">
+                        <span>Patience</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="patient">Patient – Can wait and work through processes without frustration.</div>
+                            <div class="menu-option" data-value="moderately-patient">Moderately Patient – Patience varies by context.</div>
+                            <div class="menu-option" data-value="impatient">Impatient – Easily frustrated by delay or repetition.</div>
+                        </div>
+                    </div>
+                    <div class="subtrait-card glass-tile prominent" data-subtrait="courage">
+                        <span>Courage</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="courageous">Courageous – Willing to take risks or stand for beliefs.</div>
+                            <div class="menu-option" data-value="moderately-courageous">Moderately Courageous – Courage depends on context or stakes.</div>
+                            <div class="menu-option" data-value="cautious">Cautious/Timid – Avoids risk and confrontation where possible.</div>
+                        </div>
+                    </div>
+                    <div class="subtrait-card glass-tile prominent" data-subtrait="empathy">
+                        <span>Empathy</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="empathetic">Empathetic – Strong understanding of others' feelings.</div>
+                            <div class="menu-option" data-value="moderately-empathetic">Moderately Empathetic – Sympathetic but sometimes detached.</div>
+                            <div class="menu-option" data-value="low-empathy">Low Empathy – Focused on self or logic rather than emotions.</div>
+                        </div>
+                    </div>
+                    <div class="subtrait-card glass-tile prominent" data-subtrait="adaptability">
+                        <span>Adaptability</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="adaptable">Adaptable – Easily adjusts to new conditions.</div>
+                            <div class="menu-option" data-value="moderately-adaptable">Moderately Adaptable – Can adjust but may resist change initially.</div>
+                            <div class="menu-option" data-value="rigid">Rigid – Prefers routine and struggles with change.</div>
+                        </div>
+                    </div>
+                    <div class="subtrait-card glass-tile prominent" data-subtrait="self-discipline">
+                        <span>Self-Discipline</span>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <div class="selection-menu">
+                            <div class="menu-option" data-value="self-disciplined">Self-Disciplined – Manages impulses and stays on track.</div>
+                            <div class="menu-option" data-value="flexible">Flexible – Open to adjusting methods or goals when necessary.</div>
+                            <div class="menu-option" data-value="balance">Optimistic/Pessimistic balance – Can fluctuate depending on experience or mood.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav glass-tile">
+            <a href="index.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span class="active-dot"></span>
+            </a>
+            <a href="toolbox.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                </svg>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+            </a>
+            <a href="cooking.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+            </a>
+        </nav>
+    </div>
+
+    <script src="innate.js"></script>
+</body>
+</html>
