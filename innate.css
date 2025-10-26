@@ -147,6 +147,19 @@ body.menu-open {
     align-items: center;
     padding-top: 12px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    /* Smooth fade in/out animation when expanding/collapsing */
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+/* Hide summary when trait is expanded */
+.trait-card.expanded .trait-summary {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* The main answer text (e.g., "Flexible") */
