@@ -141,9 +141,6 @@ function showSelectionMenu(subtraitCard) {
         return;
     }
 
-    // Prevent body scroll when menu opens
-    document.body.style.overflow = 'hidden';
-
     // Add animation class to subtrait card
     subtraitCard.classList.add('menu-opening');
 
@@ -161,34 +158,61 @@ function showSelectionMenu(subtraitCard) {
         menu.appendChild(optionEl);
     });
 
-    // Position menu (dropdown or dropup based on space)
+    // Calculate menu positioning
     const rect = subtraitCard.getBoundingClientRect();
-    const spaceBelow = window.innerHeight - rect.bottom;
-    const spaceAbove = rect.top;
-    const bottomNavHeight = 100; // Approximate height of bottom nav
-    const menuMaxHeight = window.innerHeight * 0.6; // 60vh
+    const viewportHeight = window.innerHeight;
+    const bottomNavHeight = 100;
+    const menuPadding = 20;
+    const maxMenuHeight = viewportHeight * 0.7; // 70vh
 
-    // Ensure menu doesn't go off screen
-    if (spaceBelow > menuMaxHeight + 20) {
-        // Dropdown - enough space below
-        menu.style.top = Math.min(rect.bottom + 10, window.innerHeight - menuMaxHeight - 20) + 'px';
+    // Calculate available space
+    const spaceBelow = viewportHeight - rect.bottom - bottomNavHeight - menuPadding;
+    const spaceAbove = rect.top - menuPadding;
+
+    // Reset any previous max-height
+    menu.style.maxHeight = '';
+
+    // Determine position and set transform origin
+    if (spaceBelow >= 300) {
+        // Dropdown - position below the tile
+        const topPosition = rect.bottom + 10;
+        const availableHeight = Math.min(spaceBelow - 10, maxMenuHeight);
+
+        menu.style.top = topPosition + 'px';
         menu.style.bottom = 'auto';
+        menu.style.maxHeight = availableHeight + 'px';
         menu.classList.add('dropdown');
         menu.classList.remove('dropup');
-    } else if (spaceAbove > menuMaxHeight + 20) {
-        // Dropup - enough space above
-        const bottomPosition = Math.max(window.innerHeight - rect.top + 10, bottomNavHeight + 20);
+
+        // Set transform origin to top center (appears from the tile)
+        menu.style.transformOrigin = 'top center';
+
+    } else if (spaceAbove >= 300) {
+        // Dropup - position above the tile
+        const bottomPosition = viewportHeight - rect.top + 10;
+        const availableHeight = Math.min(spaceAbove - 10, maxMenuHeight);
+
         menu.style.bottom = bottomPosition + 'px';
         menu.style.top = 'auto';
+        menu.style.maxHeight = availableHeight + 'px';
         menu.classList.add('dropup');
         menu.classList.remove('dropdown');
+
+        // Set transform origin to bottom center (appears from the tile)
+        menu.style.transformOrigin = 'bottom center';
+
     } else {
-        // Not enough space either way - center it with padding
-        menu.style.top = '80px';
-        menu.style.bottom = (bottomNavHeight + 20) + 'px';
-        menu.style.maxHeight = 'none';
+        // Limited space - center it vertically with safe margins
+        const safeTop = 60;
+        const safeBottom = bottomNavHeight + 20;
+        const availableHeight = viewportHeight - safeTop - safeBottom;
+
+        menu.style.top = safeTop + 'px';
+        menu.style.bottom = safeBottom + 'px';
+        menu.style.maxHeight = availableHeight + 'px';
         menu.classList.add('dropdown');
         menu.classList.remove('dropup');
+        menu.style.transformOrigin = 'center center';
     }
 
     // Show menu with slight delay for animation
@@ -204,9 +228,6 @@ function closeSelectionMenu() {
     const overlay = document.querySelector('.menu-overlay');
     menu.classList.remove('active');
     overlay.classList.remove('active');
-
-    // Restore body scroll
-    document.body.style.overflow = '';
 
     // Remove animation class from subtrait with delay
     if (currentSubtrait) {
