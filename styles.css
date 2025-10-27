@@ -263,9 +263,10 @@ body {
     color: #7FFFD4;
 }
 
+/* Active page indicator dot - positioned closer to icon */
 .active-dot {
     position: absolute;
-    bottom: -18px;
+    bottom: -8px; /* Moved closer to icon (was -18px) */
     width: 4px;
     height: 4px;
     background: #7FFFD4;
