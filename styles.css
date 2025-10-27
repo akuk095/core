@@ -231,7 +231,7 @@ body {
     color: #40E0D0;
 }
 
-/* Bottom Navigation - Design with raised center icon and curved border */
+/* Bottom Navigation */
 .bottom-nav {
     position: fixed;
     bottom: 20px;
@@ -247,23 +247,6 @@ body {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 1000;
-    padding-top: 20px;
-}
-
-/* Create curved notch effect for center icon using pseudo-element */
-.bottom-nav::before {
-    content: '';
-    position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75px;
-    height: 40px;
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 0 0 40px 40px;
-    z-index: -1;
 }
 
 .nav-item {
@@ -274,35 +257,12 @@ body {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
-    z-index: 1;
 }
 
 .nav-item svg {
     width: 24px;
     height: 24px;
     stroke-width: 2;
-}
-
-/* Center nav item (dashboard) - raised above the nav bar */
-.nav-item:nth-child(3) {
-    position: absolute;
-    top: -30px; /* Elevate the center icon above the nav bar */
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, rgba(127, 255, 212, 0.3) 0%, rgba(64, 224, 208, 0.3) 100%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgba(30, 41, 59, 0.8);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.nav-item:nth-child(3) svg {
-    width: 28px;
-    height: 28px;
 }
 
 .nav-item.active {
@@ -320,18 +280,8 @@ body {
     box-shadow: 0 0 8px #7FFFD4;
 }
 
-/* Hide active dot for center raised icon as it looks better without it */
-.nav-item:nth-child(3) .active-dot {
-    display: none;
-}
-
 .nav-item:hover {
     color: rgba(255, 255, 255, 0.8);
-}
-
-.nav-item:nth-child(3):hover {
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
 }
 
 /* Responsive Design */
