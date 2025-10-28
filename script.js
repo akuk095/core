@@ -37,6 +37,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Add navigation for tool buttons
+document.querySelectorAll('.tool-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const toolName = this.textContent.trim().toLowerCase();
+
+        // Map tool names to their page URLs
+        const toolPages = {
+            'reminders': 'reminders.html',
+            'routines': 'routines.html',
+            'trackers': 'trackers.html',
+            'journals': 'journals.html',
+            'exercise logs': 'exercise-logs.html',
+            'recipes': 'recipes.html',
+            'people': 'people.html'
+        };
+
+        // Navigate to the corresponding page
+        if (toolPages[toolName]) {
+            window.location.href = toolPages[toolName];
+        }
+    });
+});
+
 // Add touch feedback for mobile
 document.querySelectorAll('.domain-card, .nav-item, .tool-btn, .menu-btn').forEach(element => {
     element.addEventListener('touchstart', function() {
