@@ -1,0 +1,294 @@
+/* ==========================================
+   ROUTINES PAGE SPECIFIC STYLES
+   ========================================== */
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 12px;
+}
+
+.back-btn,
+.edit-btn,
+.menu-btn {
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.back-btn svg,
+.edit-btn svg,
+.menu-btn svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+}
+
+.back-btn:hover,
+.edit-btn:hover,
+.menu-btn:hover {
+    background: var(--tool-btn-bg);
+    transform: scale(1.05);
+}
+
+.edit-btn {
+    margin-left: auto;
+}
+
+/* Routine Header */
+.routine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 16px;
+}
+
+.routine-info {
+    flex: 1;
+}
+
+.routine-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+}
+
+.routine-time {
+    font-size: 15px;
+    color: var(--text-tertiary);
+    margin: 0;
+}
+
+/* Play Button */
+.play-btn {
+    background: var(--text-primary);
+    color: var(--bg-gradient-start);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.play-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.play-btn:active {
+    transform: scale(0.98);
+}
+
+/* Routine Description */
+.routine-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0 0 32px 0;
+}
+
+/* Tasks Container */
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 120px;
+}
+
+/* Task Card */
+.task-card {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    padding: 18px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
+    position: relative;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--glass-shadow);
+}
+
+/* Task Card States */
+.task-card.completed {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+[data-theme="dark"] .task-card.completed {
+    background: rgba(127, 255, 212, 0.08);
+    border-color: rgba(127, 255, 212, 0.2);
+}
+
+.task-card.skipped {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Task Content */
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Task Icon */
+.task-icon {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+}
+
+[data-theme="dark"] .task-icon {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Task Info */
+.task-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+}
+
+.task-details {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.supplement-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* Task Duration */
+.task-duration {
+    font-size: 15px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+/* Task Status Button */
+.task-status-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.task-status-btn:hover {
+    transform: scale(1.1);
+}
+
+.task-status-btn:active {
+    transform: scale(0.95);
+}
+
+/* Completed Status */
+.task-status-btn.completed {
+    background: #6366f1;
+    border: none;
+}
+
+[data-theme="dark"] .task-status-btn.completed {
+    background: var(--accent-color);
+}
+
+.task-status-btn.completed svg {
+    width: 16px;
+    height: 16px;
+    color: white;
+}
+
+/* Skipped Status */
+.task-status-btn.skipped {
+    background: #ef4444;
+    border: none;
+}
+
+.task-status-btn.skipped svg {
+    width: 16px;
+    height: 16px;
+    color: white;
+}
+
+/* Empty Circle for Pending */
+.empty-circle {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--text-tertiary);
+    border-radius: 50%;
+    opacity: 0.4;
+    transition: all 0.2s ease;
+}
+
+.task-status-btn:hover .empty-circle {
+    opacity: 0.7;
+    border-color: var(--accent-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 428px) {
+    .routine-title {
+        font-size: 28px;
+    }
+
+    .task-card {
+        padding: 16px;
+    }
+
+    .task-icon {
+        font-size: 28px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .task-name {
+        font-size: 16px;
+    }
+
+    .task-duration {
+        font-size: 14px;
+    }
+}
