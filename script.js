@@ -69,7 +69,7 @@ document.querySelectorAll('.tool-btn').forEach(button => {
         // Map tool names to their page URLs
         const toolPages = {
             'reminders': 'reminders.html',
-            'routines': 'routines.html',
+            'routines': 'routines-list.html',
             'trackers': 'trackers.html',
             'journals': 'journals.html',
             'exercise logs': 'exercise-logs.html',
