@@ -7,12 +7,80 @@
     -webkit-touch-callout: none;
 }
 
+/* Theme Variables */
+:root {
+    /* Light Mode (Default) */
+    --bg-gradient-start: #f5f7fa;
+    --bg-gradient-mid: #e8ecf0;
+    --bg-gradient-end: #dce2e8;
+    --text-primary: #1a202c;
+    --text-secondary: rgba(26, 32, 44, 0.7);
+    --text-tertiary: rgba(26, 32, 44, 0.5);
+
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+
+    --info-tile-gradient-start: rgba(127, 255, 212, 0.2);
+    --info-tile-gradient-end: rgba(102, 255, 204, 0.15);
+
+    --tool-btn-bg: rgba(0, 0, 0, 0.04);
+    --tool-btn-border: rgba(0, 0, 0, 0.08);
+    --tool-btn-hover-bg: rgba(0, 0, 0, 0.08);
+    --tool-btn-hover-border: rgba(0, 0, 0, 0.12);
+
+    --bottom-nav-bg: rgba(255, 255, 255, 0.85);
+    --nav-item-inactive: rgba(26, 32, 44, 0.4);
+
+    --scrollbar-track: rgba(0, 0, 0, 0.05);
+    --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+
+    --setting-item-border: rgba(0, 0, 0, 0.05);
+    --setting-item-hover: rgba(0, 0, 0, 0.03);
+    --setting-icon-bg: rgba(127, 255, 212, 0.15);
+}
+
+[data-theme="dark"] {
+    /* Dark Mode */
+    --bg-gradient-start: #1e3a4f;
+    --bg-gradient-mid: #2c3e50;
+    --bg-gradient-end: #34495e;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-tertiary: rgba(255, 255, 255, 0.5);
+
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.2);
+
+    --info-tile-gradient-start: rgba(127, 255, 212, 0.3);
+    --info-tile-gradient-end: rgba(102, 255, 204, 0.2);
+
+    --tool-btn-bg: rgba(255, 255, 255, 0.06);
+    --tool-btn-border: rgba(255, 255, 255, 0.1);
+    --tool-btn-hover-bg: rgba(255, 255, 255, 0.12);
+    --tool-btn-hover-border: rgba(255, 255, 255, 0.18);
+
+    --bottom-nav-bg: rgba(30, 41, 59, 0.8);
+    --nav-item-inactive: rgba(255, 255, 255, 0.5);
+
+    --scrollbar-track: rgba(255, 255, 255, 0.05);
+    --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
+
+    --setting-item-border: rgba(255, 255, 255, 0.05);
+    --setting-item-hover: rgba(255, 255, 255, 0.05);
+    --setting-icon-bg: rgba(127, 255, 212, 0.1);
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #1e3a4f 0%, #2c3e50 50%, #34495e 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+    color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -24,12 +92,13 @@ body {
 
 /* Glass Effect */
 .glass-tile {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+    transition: all 0.3s ease;
 }
 
 /* Header */
@@ -43,14 +112,58 @@ body {
 .greeting h1 {
     font-size: 24px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 4px;
 }
 
 .greeting .date {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-tertiary);
     font-weight: 400;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.theme-toggle-btn svg {
+    width: 22px;
+    height: 22px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-btn .moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .moon-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+    display: none;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--tool-btn-bg);
+    transform: scale(1.05);
 }
 
 .menu-btn {
@@ -69,18 +182,18 @@ body {
 .menu-btn svg {
     width: 24px;
     height: 24px;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .menu-btn:hover {
-    background: transparent;
+    background: var(--tool-btn-bg);
 }
 
 /* Info Tile */
 .info-tile {
     padding: 25px;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, rgba(127, 255, 212, 0.3) 0%, rgba(102, 255, 204, 0.2) 100%);
+    background: linear-gradient(135deg, var(--info-tile-gradient-start) 0%, var(--info-tile-gradient-end) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
@@ -95,7 +208,7 @@ body {
 .info-tile p {
     font-size: 14px;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-secondary);
 }
 
 /* Tools Navigation */
@@ -114,12 +227,12 @@ body {
 
 .tool-btn {
     padding: 12px 22px;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--tool-btn-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--tool-btn-border);
     border-radius: 24px;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-secondary);
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -128,8 +241,8 @@ body {
 }
 
 .tool-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: var(--tool-btn-hover-bg);
+    border-color: var(--tool-btn-hover-border);
     transform: translateY(-1px);
 }
 
@@ -184,12 +297,12 @@ body {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 4px;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .device-count {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-tertiary);
 }
 
 /* Domain-specific colors - Custom color scheme for each life domain */
@@ -241,7 +354,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: rgba(30, 41, 59, 0.8);
+    background: var(--bottom-nav-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 1000;
@@ -253,7 +366,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--nav-item-inactive);
     transition: all 0.3s ease;
 }
 
@@ -279,7 +392,7 @@ body {
 }
 
 .nav-item:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
 }
 
 /* Responsive Design */
@@ -308,17 +421,17 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--scrollbar-track);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--scrollbar-thumb);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--scrollbar-thumb-hover);
 }
 
 /* Profile Page Specific Styles */
@@ -386,13 +499,13 @@ body {
 .profile-info h2 {
     font-size: 24px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 5px;
 }
 
 .profile-email {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-tertiary);
     margin-bottom: 20px;
 }
 
@@ -441,7 +554,7 @@ body {
 
 .stat-label {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     line-height: 1.3;
 }
 
@@ -453,7 +566,7 @@ body {
 .section-title {
     font-size: 14px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 12px;
@@ -470,7 +583,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 18px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--setting-item-border);
     transition: all 0.3s ease;
 }
 
@@ -483,7 +596,7 @@ body {
 }
 
 .setting-item.clickable:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--setting-item-hover);
 }
 
 .setting-info {
@@ -497,7 +610,7 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: rgba(127, 255, 212, 0.1);
+    background: var(--setting-icon-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -518,19 +631,19 @@ body {
 .setting-text h4 {
     font-size: 15px;
     font-weight: 500;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 3px;
 }
 
 .setting-text p {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-tertiary);
 }
 
 .chevron-icon {
     width: 20px;
     height: 20px;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--text-tertiary);
     flex-shrink: 0;
 }
 
@@ -555,7 +668,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--tool-btn-bg);
     transition: 0.3s;
     border-radius: 34px;
 }
@@ -567,7 +680,7 @@ body {
     width: 20px;
     left: 4px;
     bottom: 4px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--text-primary);
     transition: 0.3s;
     border-radius: 50%;
 }
