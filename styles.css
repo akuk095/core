@@ -162,7 +162,7 @@ body {
 }
 
 .theme-toggle-btn:hover {
-    background: var(--tool-btn-bg);
+    background: transparent;
     transform: scale(1.05);
 }
 
