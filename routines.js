@@ -1,7 +1,16 @@
 // Routines Page JavaScript
 
-// State management
+// Storage keys
+const ROUTINES_DATA_KEY = 'routines_data';
 const ROUTINE_STATE_KEY = 'routine_start_of_day_state';
+
+// Routine types
+const RoutineType = {
+    DAILY: 'daily',
+    WEEKLY: 'weekly',
+    FORTNIGHTLY: 'fortnightly',
+    MONTHLY: 'monthly'
+};
 
 // Task states
 const TaskState = {
@@ -10,9 +19,76 @@ const TaskState = {
     SKIPPED: 'skipped'
 };
 
+// Load all routines from localStorage
+function loadRoutines() {
+    const saved = localStorage.getItem(ROUTINES_DATA_KEY);
+    if (saved) {
+        try {
+            return JSON.parse(saved);
+        } catch (e) {
+            console.error('Error loading routines:', e);
+            return getDefaultRoutines();
+        }
+    }
+    return getDefaultRoutines();
+}
+
+// Save all routines to localStorage
+function saveRoutines(routines) {
+    try {
+        localStorage.setItem(ROUTINES_DATA_KEY, JSON.stringify(routines));
+    } catch (e) {
+        console.error('Error saving routines:', e);
+    }
+}
+
+// Get default routine (the existing one)
+function getDefaultRoutines() {
+    return [
+        {
+            id: 'start_of_day',
+            name: 'Start of the day',
+            description: 'The morning sets the tone for the entire day, which is especially important if you are an anxious person.',
+            type: RoutineType.DAILY,
+            startTime: '9:00',
+            icon: '☀️',
+            tasks: [
+                { id: '1', name: 'Drinking water', icon: '💧', duration: 2, details: 'Take 2 glasses, 250 ml each' },
+                { id: '2', name: 'Make your bed', icon: '🛏️', duration: 3, details: '' },
+                { id: '3', name: 'Drink coffee', icon: '☕', duration: 15, details: '' },
+                { id: '4', name: 'Skincare', icon: '🧴', duration: 10, details: 'Cleanse and then serum + massage' },
+                { id: '5', name: 'Taking vitamins', icon: '💊', duration: 2, details: '<span class="supplement-label">Mo:</span> C + Zn, <span class="supplement-label">Tue:</span> D+Omega3, <span class="supplement-label">We:</span> B-complex, <span class="supplement-label">Th:</span> Mg + D, <span class="supplement-label">Fri:</span> Fe + C, <span class="supplement-label">Sa:</span> Probiotics, <span class="supplement-label">Su:</span> Multivitamin' }
+            ],
+            // For daily routines, no schedule needed
+            schedule: null
+        }
+    ];
+}
+
+// Get routine by ID
+function getRoutineById(routineId) {
+    const routines = loadRoutines();
+    return routines.find(r => r.id === routineId);
+}
+
+// Add a new routine
+function addRoutine(routine) {
+    const routines = loadRoutines();
+    routines.push(routine);
+    saveRoutines(routines);
+}
+
+// Delete a routine
+function deleteRoutine(routineId) {
+    const routines = loadRoutines();
+    const filtered = routines.filter(r => r.id !== routineId);
+    saveRoutines(filtered);
+}
+
 // Load routine state from localStorage
-function loadRoutineState() {
-    const saved = localStorage.getItem(ROUTINE_STATE_KEY);
+function loadRoutineState(routineId) {
+    const key = `routine_${routineId}_state`;
+    const saved = localStorage.getItem(key);
     if (saved) {
         try {
             return JSON.parse(saved);
@@ -25,31 +101,81 @@ function loadRoutineState() {
 }
 
 // Save routine state to localStorage
-function saveRoutineState(state) {
+function saveRoutineState(routineId, state) {
     try {
-        localStorage.setItem(ROUTINE_STATE_KEY, JSON.stringify(state));
+        const key = `routine_${routineId}_state`;
+        localStorage.setItem(key, JSON.stringify(state));
     } catch (e) {
         console.error('Error saving routine state:', e);
     }
 }
 
 // Get current state of a task
-function getTaskState(taskId) {
-    const state = loadRoutineState();
+function getTaskState(routineId, taskId) {
+    const state = loadRoutineState(routineId);
     return state[taskId] || TaskState.PENDING;
 }
 
 // Update task state
-function updateTaskState(taskId, newState) {
-    const state = loadRoutineState();
+function updateTaskState(routineId, taskId, newState) {
+    const state = loadRoutineState(routineId);
     state[taskId] = newState;
-    saveRoutineState(state);
+    saveRoutineState(routineId, state);
+}
+
+// Check if a routine should be displayed today
+function shouldShowRoutineToday(routine, date = new Date()) {
+    if (routine.type === RoutineType.DAILY) {
+        return true;
+    }
+
+    if (routine.type === RoutineType.WEEKLY) {
+        // schedule.weekDays is an array of days [0-6] where 0 is Sunday
+        if (routine.schedule && routine.schedule.weekDays) {
+            return routine.schedule.weekDays.includes(date.getDay());
+        }
+        return false;
+    }
+
+    if (routine.type === RoutineType.FORTNIGHTLY) {
+        // schedule.startDate is the first occurrence date
+        // schedule.weekDay is the day of the week (0-6)
+        if (routine.schedule && routine.schedule.startDate && routine.schedule.weekDay !== undefined) {
+            const startDate = new Date(routine.schedule.startDate);
+            const daysDiff = Math.floor((date - startDate) / (1000 * 60 * 60 * 24));
+
+            // Check if it's the right day of the week
+            if (date.getDay() !== routine.schedule.weekDay) {
+                return false;
+            }
+
+            // Check if it's been 0, 14, 28, 42... days since start
+            return daysDiff >= 0 && daysDiff % 14 === 0;
+        }
+        return false;
+    }
+
+    if (routine.type === RoutineType.MONTHLY) {
+        // schedule.dayOfMonth is the day number (1-31)
+        if (routine.schedule && routine.schedule.dayOfMonth) {
+            return date.getDate() === routine.schedule.dayOfMonth;
+        }
+        return false;
+    }
+
+    return false;
+}
+
+// Get routines that should be shown today
+function getTodaysRoutines(date = new Date()) {
+    const routines = loadRoutines();
+    return routines.filter(routine => shouldShowRoutineToday(routine, date));
 }
 
 // Cycle task state (pending -> completed -> skipped -> pending)
-function cycleTaskState(taskCard) {
+function cycleTaskState(taskCard, routineId) {
     const taskId = taskCard.dataset.taskId;
-    const currentState = getTaskState(taskId);
+    const currentState = getTaskState(routineId, taskId);
 
     let newState;
     switch (currentState) {
@@ -66,7 +192,7 @@ function cycleTaskState(taskCard) {
             newState = TaskState.COMPLETED;
     }
 
-    updateTaskState(taskId, newState);
+    updateTaskState(routineId, taskId, newState);
     applyTaskState(taskCard, newState);
 }
 
@@ -111,12 +237,12 @@ function applyTaskState(taskCard, state) {
 }
 
 // Initialize task cards with saved states
-function initializeTaskCards() {
+function initializeTaskCards(routineId) {
     const taskCards = document.querySelectorAll('.task-card');
 
     taskCards.forEach(taskCard => {
         const taskId = taskCard.dataset.taskId;
-        const savedState = getTaskState(taskId);
+        const savedState = getTaskState(routineId, taskId);
 
         // Apply saved state
         applyTaskState(taskCard, savedState);
@@ -126,14 +252,14 @@ function initializeTaskCards() {
         if (statusBtn) {
             statusBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                cycleTaskState(taskCard);
+                cycleTaskState(taskCard, routineId);
             });
         }
     });
 }
 
 // Play button functionality
-function initializePlayButton() {
+function initializePlayButton(routineId) {
     const playBtn = document.querySelector('.play-btn');
 
     if (playBtn) {
@@ -144,7 +270,7 @@ function initializePlayButton() {
 
             for (const taskCard of taskCards) {
                 const taskId = taskCard.dataset.taskId;
-                const state = getTaskState(taskId);
+                const state = getTaskState(routineId, taskId);
                 if (state === TaskState.PENDING) {
                     firstPendingTask = taskCard;
                     break;
@@ -230,7 +356,11 @@ function addToastAnimations() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    initializeTaskCards();
-    initializePlayButton();
+    // Get routine ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const routineId = urlParams.get('id') || 'start_of_day';
+
+    initializeTaskCards(routineId);
+    initializePlayButton(routineId);
     addToastAnimations();
 });

@@ -3,54 +3,414 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start of the day - Core</title>
+    <title>Routines - Core</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="routines.css">
+    <style>
+        .routine-list-card {
+            background: var(--glass-background);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .routine-list-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        .routine-icon {
+            font-size: 2rem;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-color-alpha);
+            border-radius: 12px;
+        }
+
+        .routine-list-info {
+            flex: 1;
+        }
+
+        .routine-list-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .routine-type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .routine-type-daily { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
+        .routine-type-weekly { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .routine-type-fortnightly { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .routine-type-monthly { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+        .add-routine-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .add-routine-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            padding: 32px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px;
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--glass-background);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .type-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .type-option {
+            padding: 16px;
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--glass-background);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .type-option:hover {
+            border-color: var(--accent-color);
+        }
+
+        .type-option.selected {
+            border-color: var(--accent-color);
+            background: var(--accent-color-alpha);
+        }
+
+        .type-option-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-transform: capitalize;
+        }
+
+        .type-option-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .schedule-config {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background: var(--glass-background);
+        }
+
+        .schedule-config.active {
+            display: block;
+        }
+
+        .weekday-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .weekday-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--glass-border);
+            border-radius: 8px;
+            background: var(--glass-background);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .weekday-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .weekday-btn.selected {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #5558e3;
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 32px 0 16px 0;
+            color: var(--text-primary);
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <!-- Header Section -->
         <header class="page-header">
-            <a href="routines-list.html" class="back-btn">
+            <a href="index.html" class="back-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M15 19l-7-7 7-7"/>
                 </svg>
             </a>
-            <button class="edit-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-            </button>
-            <button class="menu-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="5" r="1"/>
-                    <circle cx="12" cy="12" r="1"/>
-                    <circle cx="12" cy="19" r="1"/>
-                </svg>
-            </button>
+            <h2 style="flex: 1; text-align: center; margin: 0; font-size: 1.2rem;">Routines</h2>
+            <div style="width: 40px;"></div>
         </header>
 
-        <!-- Routine Header -->
-        <div class="routine-header">
-            <div class="routine-info">
-                <h1 class="routine-title">Start of the day</h1>
-                <p class="routine-time">9:00 am - 9:42 am</p>
-            </div>
-            <button class="play-btn">Play</button>
+        <!-- Today's Date -->
+        <div style="text-align: center; margin: 16px 0; color: var(--text-secondary);">
+            <p id="currentDate"></p>
         </div>
 
-        <!-- Routine Description -->
-        <p class="routine-description">
-            The morning sets the tone for the entire day, which is especially important if you are an anxious person.
-        </p>
+        <!-- Routines List -->
+        <div id="routinesList">
+            <!-- Routines will be inserted here -->
+        </div>
 
-        <!-- Tasks List -->
-        <div class="tasks-container">
-            <!-- Tasks will be dynamically loaded here -->
+        <!-- Add Routine Button -->
+        <button class="add-routine-btn" id="addRoutineBtn">+</button>
+
+        <!-- Add Routine Modal -->
+        <div class="modal" id="addRoutineModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add New Routine</h3>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+
+                <form id="routineForm">
+                    <div class="form-group">
+                        <label class="form-label">Routine Name</label>
+                        <input type="text" class="form-input" id="routineName" required placeholder="e.g., Morning Workout">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Icon (Emoji)</label>
+                        <input type="text" class="form-input" id="routineIcon" required placeholder="e.g., 🏃" maxlength="2">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-input form-textarea" id="routineDescription" placeholder="Optional description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Start Time</label>
+                        <input type="time" class="form-input" id="routineStartTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Routine Type</label>
+                        <div class="type-selector">
+                            <div class="type-option" data-type="daily">
+                                <div class="type-option-title">Daily</div>
+                                <div class="type-option-desc">Every day</div>
+                            </div>
+                            <div class="type-option" data-type="weekly">
+                                <div class="type-option-title">Weekly</div>
+                                <div class="type-option-desc">Specific days</div>
+                            </div>
+                            <div class="type-option" data-type="fortnightly">
+                                <div class="type-option-title">Fortnightly</div>
+                                <div class="type-option-desc">Every 2 weeks</div>
+                            </div>
+                            <div class="type-option" data-type="monthly">
+                                <div class="type-option-title">Monthly</div>
+                                <div class="type-option-desc">Once a month</div>
+                            </div>
+                        </div>
+
+                        <!-- Weekly Schedule -->
+                        <div class="schedule-config" id="weeklySchedule">
+                            <label class="form-label">Select Days</label>
+                            <div class="weekday-selector">
+                                <button type="button" class="weekday-btn" data-day="0">Su</button>
+                                <button type="button" class="weekday-btn" data-day="1">Mo</button>
+                                <button type="button" class="weekday-btn" data-day="2">Tu</button>
+                                <button type="button" class="weekday-btn" data-day="3">We</button>
+                                <button type="button" class="weekday-btn" data-day="4">Th</button>
+                                <button type="button" class="weekday-btn" data-day="5">Fr</button>
+                                <button type="button" class="weekday-btn" data-day="6">Sa</button>
+                            </div>
+                        </div>
+
+                        <!-- Fortnightly Schedule -->
+                        <div class="schedule-config" id="fortnightlySchedule">
+                            <div class="form-group">
+                                <label class="form-label">Start Date</label>
+                                <input type="date" class="form-input" id="fortnightlyStartDate">
+                            </div>
+                            <label class="form-label">Day of Week</label>
+                            <div class="weekday-selector">
+                                <button type="button" class="weekday-btn" data-day="0">Su</button>
+                                <button type="button" class="weekday-btn" data-day="1">Mo</button>
+                                <button type="button" class="weekday-btn" data-day="2">Tu</button>
+                                <button type="button" class="weekday-btn" data-day="3">We</button>
+                                <button type="button" class="weekday-btn" data-day="4">Th</button>
+                                <button type="button" class="weekday-btn" data-day="5">Fr</button>
+                                <button type="button" class="weekday-btn" data-day="6">Sa</button>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Schedule -->
+                        <div class="schedule-config" id="monthlySchedule">
+                            <label class="form-label">Day of Month</label>
+                            <input type="number" class="form-input" id="monthlyDay" min="1" max="31" placeholder="e.g., 15">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Add Routine</button>
+                </form>
+            </div>
         </div>
 
         <!-- Bottom Navigation -->
@@ -98,6 +458,6 @@
 
     <script src="script.js"></script>
     <script src="routines.js"></script>
-    <script src="routines-view.js"></script>
+    <script src="routines-list.js"></script>
 </body>
 </html>
