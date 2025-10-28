@@ -654,6 +654,9 @@ function renderCompletedSubtrait(subtraitCard) {
     planEl.className = 'subtrait-plan';
     planEl.textContent = `I plan to ${data.action} on this by ${data.plan}`;
     subtraitCard.appendChild(planEl);
+
+    // Update progress ring
+    updateProgressRing();
 }
 
 /**
@@ -754,6 +757,60 @@ function editAnswers(subtraitId, subtraitCard) {
 // Store original text for reset functionality
 // ==========================================
 
+// ==========================================
+// PROGRESS TRACKING
+// Updates the circular progress ring and text
+// ==========================================
+
+function updateProgressRing() {
+    const totalTraits = 6; // Total number of trait categories
+    const traitCards = document.querySelectorAll('.trait-card');
+    let completedCount = 0;
+
+    traitCards.forEach(card => {
+        const subtraits = card.querySelectorAll('.subtrait-card');
+        let allCompleted = true;
+
+        subtraits.forEach(subtrait => {
+            if (!subtrait.classList.contains('completed')) {
+                allCompleted = false;
+            }
+        });
+
+        if (allCompleted && subtraits.length > 0) {
+            completedCount++;
+            card.classList.add('completed');
+        } else {
+            card.classList.remove('completed');
+        }
+    });
+
+    const percentage = Math.round((completedCount / totalTraits) * 100);
+
+    // Update percentage text
+    const percentageEl = document.getElementById('progressPercentage');
+    if (percentageEl) {
+        percentageEl.textContent = percentage + '%';
+    }
+
+    // Update progress text
+    const progressTextEl = document.getElementById('progressText');
+    if (progressTextEl) {
+        progressTextEl.textContent = `${completedCount} of ${totalTraits} traits completed`;
+    }
+
+    // Update circular progress ring
+    const progressCircle = document.getElementById('progressCircle');
+    if (progressCircle) {
+        const radius = 50;
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference - (percentage / 100) * circumference;
+
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressCircle.style.strokeDashoffset = offset;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.subtrait-card').forEach(card => {
         const originalText = card.querySelector('span')?.textContent;
@@ -761,4 +818,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.setAttribute('data-original-text', originalText);
         }
     });
+
+    // Initialize progress ring
+    updateProgressRing();
 });
