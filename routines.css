@@ -111,6 +111,20 @@
     flex-direction: column;
     gap: 12px;
     padding-bottom: 120px;
+    position: relative;
+    padding-right: 48px;
+}
+
+/* Timeline Line */
+.tasks-container::before {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 40px;
+    bottom: 120px;
+    width: 2px;
+    background: var(--tool-btn-border);
+    z-index: 0;
 }
 
 /* Task Card */
@@ -118,6 +132,7 @@
     background: var(--glass-bg);
     border-radius: 20px;
     padding: 18px;
+    padding-right: 12px;
     transition: all 0.3s ease;
     border: 1px solid var(--glass-border);
     position: relative;
@@ -198,7 +213,7 @@
     font-size: 15px;
     color: var(--text-tertiary);
     font-weight: 500;
-    margin-right: 8px;
+    margin-right: 52px;
     flex-shrink: 0;
 }
 
@@ -208,21 +223,31 @@
     height: 32px;
     border-radius: 50%;
     border: none;
-    background: transparent;
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    position: absolute;
+    right: -48px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .task-status-btn {
+    background: var(--glass-bg);
 }
 
 .task-status-btn:hover {
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .task-status-btn:active {
-    transform: scale(0.95);
+    transform: translateY(-50%) scale(0.95);
 }
 
 /* Completed Status */
@@ -255,17 +280,16 @@
 
 /* Empty Circle for Pending */
 .empty-circle {
-    width: 24px;
-    height: 24px;
-    border: 2px solid var(--text-tertiary);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--tool-btn-border);
     border-radius: 50%;
-    opacity: 0.4;
     transition: all 0.2s ease;
 }
 
 .task-status-btn:hover .empty-circle {
-    opacity: 0.7;
     border-color: var(--accent-color);
+    border-width: 3px;
 }
 
 /* Responsive Adjustments */
@@ -274,8 +298,17 @@
         font-size: 28px;
     }
 
+    .tasks-container {
+        padding-right: 44px;
+    }
+
+    .tasks-container::before {
+        right: 14px;
+    }
+
     .task-card {
         padding: 16px;
+        padding-right: 10px;
     }
 
     .task-icon {
@@ -290,5 +323,17 @@
 
     .task-duration {
         font-size: 14px;
+        margin-right: 48px;
+    }
+
+    .task-status-btn {
+        right: -44px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .empty-circle {
+        width: 18px;
+        height: 18px;
     }
 }
