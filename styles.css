@@ -9,36 +9,40 @@
 
 /* Theme Variables */
 :root {
-    /* Light Mode (Default) */
-    --bg-gradient-start: #f5f7fa;
-    --bg-gradient-mid: #e8ecf0;
-    --bg-gradient-end: #dce2e8;
-    --text-primary: #1a202c;
-    --text-secondary: rgba(26, 32, 44, 0.7);
-    --text-tertiary: rgba(26, 32, 44, 0.5);
+    /* Light Mode (Default) - Neutral Colors */
+    --bg-gradient-start: #f8f9fa;
+    --bg-gradient-mid: #f1f3f5;
+    --bg-gradient-end: #e9ecef;
+    --text-primary: #2d3748;
+    --text-secondary: rgba(45, 55, 72, 0.7);
+    --text-tertiary: rgba(45, 55, 72, 0.5);
 
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 0, 0, 0.1);
-    --glass-shadow: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-shadow: transparent;
 
-    --info-tile-gradient-start: rgba(127, 255, 212, 0.2);
-    --info-tile-gradient-end: rgba(102, 255, 204, 0.15);
+    --info-tile-gradient-start: rgba(99, 102, 241, 0.08);
+    --info-tile-gradient-end: rgba(99, 102, 241, 0.05);
 
     --tool-btn-bg: rgba(0, 0, 0, 0.04);
     --tool-btn-border: rgba(0, 0, 0, 0.08);
     --tool-btn-hover-bg: rgba(0, 0, 0, 0.08);
     --tool-btn-hover-border: rgba(0, 0, 0, 0.12);
 
-    --bottom-nav-bg: rgba(255, 255, 255, 0.85);
-    --nav-item-inactive: rgba(26, 32, 44, 0.4);
+    --bottom-nav-bg: rgba(255, 255, 255, 0.9);
+    --nav-item-inactive: rgba(45, 55, 72, 0.4);
 
     --scrollbar-track: rgba(0, 0, 0, 0.05);
     --scrollbar-thumb: rgba(0, 0, 0, 0.2);
     --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
 
-    --setting-item-border: rgba(0, 0, 0, 0.05);
+    --setting-item-border: rgba(0, 0, 0, 0.08);
     --setting-item-hover: rgba(0, 0, 0, 0.03);
-    --setting-icon-bg: rgba(127, 255, 212, 0.15);
+    --setting-icon-bg: rgba(99, 102, 241, 0.1);
+
+    /* Accent color - neutral indigo instead of fluorescent cyan */
+    --accent-color: #6366f1;
+    --accent-light: rgba(99, 102, 241, 0.15);
 }
 
 [data-theme="dark"] {
@@ -72,6 +76,10 @@
     --setting-item-border: rgba(255, 255, 255, 0.05);
     --setting-item-hover: rgba(255, 255, 255, 0.05);
     --setting-icon-bg: rgba(127, 255, 212, 0.1);
+
+    /* Accent color - cyan for dark mode */
+    --accent-color: #7FFFD4;
+    --accent-light: rgba(127, 255, 212, 0.15);
 }
 
 body {
@@ -202,7 +210,7 @@ body {
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: #7FFFD4;
+    color: var(--accent-color);
 }
 
 .info-tile p {
@@ -377,7 +385,7 @@ body {
 }
 
 .nav-item.active {
-    color: #7FFFD4;
+    color: var(--accent-color);
 }
 
 /* Active page indicator dot - positioned closer to icon */
@@ -386,9 +394,9 @@ body {
     bottom: -8px; /* Moved closer to icon (was -18px) */
     width: 4px;
     height: 4px;
-    background: #7FFFD4;
+    background: var(--accent-color);
     border-radius: 50%;
-    box-shadow: 0 0 8px #7FFFD4;
+    box-shadow: 0 0 8px var(--accent-color);
 }
 
 .nav-item:hover {
