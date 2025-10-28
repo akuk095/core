@@ -46,12 +46,13 @@ body.menu-open {
     align-items: center;
     gap: 24px;
     padding: 24px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     margin-bottom: 30px;
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
 }
 
 .progress-ring {
@@ -60,7 +61,7 @@ body.menu-open {
 
 .progress-ring-bg {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.1);
+    stroke: var(--tool-btn-border);
     stroke-width: 8;
 }
 
@@ -86,7 +87,7 @@ body.menu-open {
 .progress-label {
     font-size: 11px;
     font-weight: 500;
-    fill: rgba(255, 255, 255, 0.5);
+    fill: var(--text-tertiary);
     text-anchor: middle;
     dominant-baseline: middle;
 }
@@ -98,13 +99,13 @@ body.menu-open {
 .progress-title {
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0 0 6px 0;
 }
 
 .progress-description {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-tertiary);
     margin: 0;
 }
 
@@ -126,7 +127,7 @@ body.menu-open {
 .back-btn svg {
     width: 20px;
     height: 20px;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 /* Scale up on hover for subtle feedback */
@@ -137,7 +138,7 @@ body.menu-open {
 .page-title {
     font-size: 28px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     flex: 1;
     text-align: center;
 }
@@ -154,7 +155,7 @@ body.menu-open {
     justify-content: center;
     cursor: pointer;
     transition: transform 0.2s ease;
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .menu-btn:hover {
@@ -205,7 +206,7 @@ body.menu-open {
 .trait-header h3 {
     font-size: 18px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0;
     flex: 1;
 }
@@ -353,7 +354,7 @@ body.menu-open {
 
 .subtrait-card span {
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
     font-weight: 500;
 }
 
@@ -370,7 +371,7 @@ body.menu-open {
 
 /* Enhanced hover effect with subtle scale */
 .subtrait-card:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--tool-btn-hover-bg);
     transform: translateY(-1px);
 }
 
@@ -423,16 +424,16 @@ body.menu-open {
     position: fixed;
     left: 20px;
     right: 20px;
-    background: rgba(30, 41, 59, 0.95);
+    background: var(--glass-bg);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     padding: 20px;
     max-height: 70vh; /* Maximum 70% of viewport height */
     overflow-y: auto; /* Scroll if content exceeds max height */
     z-index: 2000; /* Above overlay and highlighted tile */
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 50px var(--glass-shadow);
     opacity: 0;
     pointer-events: none; /* Invisible and non-interactive when not active */
     /* Elastic bounce effect makes it clear where menu comes from */
@@ -467,16 +468,16 @@ body.menu-open {
 
 .menu-option {
     padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--tool-btn-bg);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     margin-bottom: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-primary);
     font-size: 14px;
     line-height: 1.5;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--tool-btn-border);
 }
 
 .menu-option:hover {
@@ -511,21 +512,21 @@ body.menu-open {
 }
 
 .dialogue-box {
-    background: rgba(30, 41, 59, 0.95);
+    background: var(--glass-bg);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--glass-border);
     padding: 30px 25px;
     max-width: 400px;
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px var(--glass-shadow);
 }
 
 .dialogue-title {
     font-size: 18px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 20px;
     text-align: center;
 }
@@ -533,10 +534,10 @@ body.menu-open {
 .dialogue-input {
     width: 100%;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--tool-btn-bg);
+    border: 1px solid var(--tool-btn-border);
     border-radius: 12px;
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 15px;
     font-family: inherit;
     resize: vertical;
@@ -546,8 +547,8 @@ body.menu-open {
 
 .dialogue-input:focus {
     outline: none;
-    border-color: #7FFFD4;
-    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-color);
+    background: var(--tool-btn-hover-bg);
 }
 
 .dialogue-buttons {
@@ -576,13 +577,13 @@ body.menu-open {
 }
 
 .dialogue-btn.secondary {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.7);
+    background: var(--tool-btn-bg);
+    border-color: var(--tool-btn-border);
+    color: var(--text-secondary);
 }
 
 .dialogue-btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: var(--tool-btn-hover-bg);
 }
 
 .dialogue-btn.improve {
@@ -643,14 +644,14 @@ body.menu-open {
 
 .subtrait-reason {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-tertiary);
     line-height: 1.5;
     margin-bottom: 8px;
 }
 
 .subtrait-plan {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-tertiary);
     line-height: 1.5;
     font-style: italic;
 }
@@ -680,11 +681,11 @@ body.menu-open {
 }
 
 .selection-menu::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--scrollbar-track);
     border-radius: 10px;
 }
 
 .selection-menu::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--scrollbar-thumb);
     border-radius: 10px;
 }
