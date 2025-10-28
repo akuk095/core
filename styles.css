@@ -54,7 +54,7 @@ body {
 }
 
 .menu-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     border: none;
     width: 40px;
     height: 40px;
@@ -73,7 +73,7 @@ body {
 }
 
 .menu-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: transparent;
 }
 
 /* Info Tile */
@@ -123,12 +123,6 @@ body {
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.3s ease;
-}
-
-.tool-btn.active {
-    background: rgba(127, 255, 212, 0.25);
-    color: #7FFFD4;
-    border-color: rgba(127, 255, 212, 0.3);
 }
 
 .tool-btn:hover {
