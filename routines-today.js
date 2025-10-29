@@ -16,11 +16,43 @@ function displayHeader() {
 // Update context switcher UI
 function updateContextUI() {
     const currentContext = getCurrentContext();
-    document.querySelectorAll('.context-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.context === currentContext) {
-            btn.classList.add('active');
-        }
+    const labelEl = document.querySelector('#currentContextLabel');
+    if (labelEl) {
+        // Capitalize first letter
+        labelEl.textContent = currentContext.charAt(0).toUpperCase() + currentContext.slice(1);
+    }
+
+    // Update dropdown options
+    renderContextOptions();
+}
+
+// Render context options in dropdown
+function renderContextOptions() {
+    const container = document.querySelector('#contextOptionsContainer');
+    if (!container) return;
+
+    const allContexts = getAllContexts();
+    const currentContext = getCurrentContext();
+
+    let html = '';
+    allContexts.forEach(context => {
+        const isActive = context === currentContext;
+        html += `
+            <div class="context-option ${isActive ? 'active' : ''}" data-context="${context}">
+                <span class="context-option-name">${context.charAt(0).toUpperCase() + context.slice(1)}</span>
+                ${isActive ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' : ''}
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+
+    // Add click handlers
+    document.querySelectorAll('.context-option').forEach(option => {
+        option.addEventListener('click', () => {
+            switchContext(option.dataset.context);
+            closeContextDropdown();
+        });
     });
 }
 
@@ -29,6 +61,23 @@ function switchContext(context) {
     setCurrentContext(context);
     updateContextUI();
     renderTodaysTasks();
+}
+
+// Show context dropdown
+function showContextDropdown() {
+    const dropdown = document.querySelector('#contextDropdown');
+    if (dropdown) {
+        dropdown.classList.add('active');
+        renderContextOptions();
+    }
+}
+
+// Close context dropdown
+function closeContextDropdown() {
+    const dropdown = document.querySelector('#contextDropdown');
+    if (dropdown) {
+        dropdown.classList.remove('active');
+    }
 }
 
 // Render all tasks for today
@@ -149,12 +198,39 @@ document.addEventListener('DOMContentLoaded', () => {
     displayHeader();
     renderTodaysTasks();
 
-    // Context switcher
-    document.querySelectorAll('.context-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchContext(btn.dataset.context);
+    // Context selector button
+    const contextSelectorBtn = document.querySelector('#contextSelectorBtn');
+    if (contextSelectorBtn) {
+        contextSelectorBtn.addEventListener('click', showContextDropdown);
+    }
+
+    // Close context dropdown
+    const closeMenuBtn = document.querySelector('#closeContextMenu');
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeContextDropdown);
+    }
+
+    // Close dropdown when clicking backdrop
+    const contextDropdown = document.querySelector('#contextDropdown');
+    if (contextDropdown) {
+        contextDropdown.addEventListener('click', (e) => {
+            if (e.target === contextDropdown) {
+                closeContextDropdown();
+            }
         });
-    });
+    }
+
+    // Add context button
+    const addContextBtn = document.querySelector('#addContextBtn');
+    if (addContextBtn) {
+        addContextBtn.addEventListener('click', () => {
+            const contextName = prompt('Enter a name for the new routine type:');
+            if (contextName && contextName.trim()) {
+                addNewContext(contextName.trim().toLowerCase());
+                renderContextOptions();
+            }
+        });
+    }
 
     // Add routine button
     const addRoutineBtn = document.querySelector('#addRoutineBtn');
