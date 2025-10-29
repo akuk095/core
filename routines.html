@@ -10,92 +10,176 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="routines.css">
     <style>
-        .page-header-custom {
+        .page-header-simple {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
 
-        .header-left {
+        .header-title-section h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: var(--text-primary);
+        }
+
+        .header-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .header-actions {
             display: flex;
+            gap: 6px;
             align-items: center;
-            gap: 12px;
         }
 
-        .header-right {
-            display: flex;
-            gap: 8px;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: var(--glass-background);
-            backdrop-filter: blur(20px);
+        .settings-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .settings-btn:hover {
+            background: var(--tool-btn-bg);
             color: var(--text-primary);
         }
 
-        .icon-btn:hover {
-            border-color: var(--accent-color);
-            background: var(--accent-color-alpha);
-        }
-
-        .icon-btn svg {
+        .settings-btn svg {
             width: 20px;
             height: 20px;
         }
 
-        .today-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .today-date {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .context-switcher {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            padding: 6px;
-            background: var(--glass-background);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            margin-bottom: 24px;
-        }
-
-        .context-btn {
-            flex: 1;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 12px;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.9rem;
+        .context-selector {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--tool-btn-bg);
+            border: 1px solid var(--tool-btn-border);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
-        .context-btn.active {
+        .context-selector:hover {
+            background: var(--tool-btn-hover-bg);
+            border-color: var(--tool-btn-hover-border);
+        }
+
+        .context-selector svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-secondary);
+        }
+
+        .context-dropdown {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            align-items: flex-end;
+        }
+
+        .context-dropdown.active {
+            display: flex;
+        }
+
+        .context-menu {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            width: 100%;
+            max-width: 428px;
+            margin: 0 auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .context-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .context-menu-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .close-menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .context-option {
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .context-option.active {
+            background: var(--accent-light);
+            border-color: var(--accent-color);
+        }
+
+        .context-option:hover {
+            background: var(--tool-btn-hover-bg);
+        }
+
+        .context-option-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .context-option.active .context-option-name {
+            color: var(--accent-color);
+        }
+
+        .add-context-btn {
+            width: 100%;
+            padding: 14px;
             background: var(--accent-color);
             color: white;
-        }
-
-        .context-btn:hover:not(.active) {
-            background: var(--accent-color-alpha);
-            color: var(--text-primary);
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
         }
 
         .routine-section {
@@ -164,39 +248,48 @@
 <body>
     <div class="container">
         <!-- Header Section -->
-        <header class="page-header-custom">
-            <div class="header-left">
-                <a href="index.html" class="icon-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 19l-7-7 7-7"/>
-                    </svg>
-                </a>
+        <header class="page-header-simple">
+            <div class="header-title-section">
+                <h1>Routine</h1>
+                <p class="header-date" id="todayDate"></p>
             </div>
-            <div class="header-right">
-                <button class="icon-btn" id="manageRoutinesBtn" title="Manage Routines">
+            <div class="header-actions">
+                <button class="context-selector" id="contextSelectorBtn">
+                    <span id="currentContextLabel">Normal</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m-4-9l4-4m0 0l-4-4m4 4H3"/>
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <button class="settings-btn" id="manageRoutinesBtn" title="Manage Routines">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
                     </svg>
                 </button>
             </div>
         </header>
 
-        <!-- Today's Date -->
-        <div class="today-header">
-            <p class="today-date" id="todayDate"></p>
-            <h1 class="routine-title" style="margin: 0;">Today's Routine</h1>
-        </div>
-
-        <!-- Context Switcher -->
-        <div class="context-switcher">
-            <button class="context-btn active" data-context="normal">Normal</button>
-            <button class="context-btn" data-context="travel">Travel</button>
-            <button class="context-btn" data-context="holiday">Holiday</button>
-        </div>
-
         <!-- Tasks Container -->
         <div class="tasks-container">
             <!-- Tasks will be dynamically loaded here -->
+        </div>
+
+        <!-- Context Dropdown -->
+        <div class="context-dropdown" id="contextDropdown">
+            <div class="context-menu">
+                <div class="context-menu-header">
+                    <h3 class="context-menu-title">Switch Routine</h3>
+                    <button class="close-menu-btn" id="closeContextMenu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div id="contextOptionsContainer">
+                    <!-- Context options will be dynamically loaded -->
+                </div>
+                <button class="add-context-btn" id="addContextBtn">+ Add New Routine Type</button>
+            </div>
         </div>
 
         <!-- Add Routine FAB -->

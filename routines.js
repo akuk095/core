@@ -37,6 +37,25 @@ function setCurrentContext(context) {
     localStorage.setItem(CURRENT_CONTEXT_KEY, context);
 }
 
+// Get all available contexts
+function getAllContexts() {
+    const allRoutines = loadAllRoutines();
+    return Object.keys(allRoutines);
+}
+
+// Add a new context
+function addNewContext(contextName) {
+    const allRoutines = loadAllRoutines();
+    const normalizedName = contextName.toLowerCase().replace(/\s+/g, '_');
+
+    if (!allRoutines[normalizedName]) {
+        allRoutines[normalizedName] = [];
+        saveAllRoutines(allRoutines);
+    }
+
+    return normalizedName;
+}
+
 // Load all routines from localStorage (organized by context)
 function loadAllRoutines() {
     const saved = localStorage.getItem(ROUTINES_DATA_KEY);
