@@ -18,7 +18,7 @@
     --text-tertiary: rgba(45, 55, 72, 0.5);
 
     --glass-bg: rgba(255, 255, 255, 0.6);
-    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-border: rgba(0, 0, 0, 0);
     --glass-shadow: transparent;
 
     --info-tile-gradient-start: rgba(99, 102, 241, 0.08);
@@ -47,15 +47,15 @@
 
 [data-theme="dark"] {
     /* Dark Mode */
-    --bg-gradient-start: #1e3a4f;
-    --bg-gradient-mid: #2c3e50;
-    --bg-gradient-end: #34495e;
+    --bg-gradient-start: #000000;
+    --bg-gradient-mid: #000000;
+    --bg-gradient-end: #000000;
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-tertiary: rgba(255, 255, 255, 0.5);
 
     --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0);
     --glass-shadow: rgba(0, 0, 0, 0.2);
 
     --info-tile-gradient-start: rgba(127, 255, 212, 0.3);
@@ -66,7 +66,7 @@
     --tool-btn-hover-bg: rgba(255, 255, 255, 0.12);
     --tool-btn-hover-border: rgba(255, 255, 255, 0.18);
 
-    --bottom-nav-bg: rgba(30, 41, 59, 0.8);
+    --bottom-nav-bg: rgba(0, 0, 0, 0.8);
     --nav-item-inactive: rgba(255, 255, 255, 0.5);
 
     --scrollbar-track: rgba(255, 255, 255, 0.05);
