@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trackers - Innate</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="trackers.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="page-header">
+            <a href="index.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <h2 style="flex: 1; text-align: center; margin: 0; font-size: 1.2rem;">Trackers</h2>
+            <button class="menu-btn" id="menuBtn">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12h8M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Trackers Grid -->
+        <div class="trackers-grid">
+            <!-- Calories Tracker -->
+            <div class="tracker-card large-card calories-card" data-tracker="calories">
+                <div class="card-header">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                    </svg>
+                    <span>Calories</span>
+                </div>
+                <div class="progress-container">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring-bg" cx="60" cy="60" r="52" stroke-width="8" fill="none"/>
+                        <circle class="progress-ring-fill calories-progress" cx="60" cy="60" r="52" stroke-width="8" fill="none" stroke-dasharray="327" stroke-dashoffset="81.75"/>
+                    </svg>
+                    <div class="progress-text">
+                        <div class="current-value">345</div>
+                        <div class="unit">Kcal</div>
+                    </div>
+                </div>
+                <div class="goal-text">Goal: 400</div>
+            </div>
+
+            <!-- Sleep Tracker -->
+            <div class="tracker-card sleep-card" data-tracker="sleep">
+                <div class="card-header">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3C7.03 3 3 7.03 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12C21 7.03 16.97 3 12 3ZM12 19C8.13 19 5 15.87 5 12C5 8.13 8.13 5 12 5C15.87 5 19 8.13 19 12C19 15.87 15.87 19 12 19Z" fill="currentColor"/>
+                    </svg>
+                    <span>Sleep</span>
+                </div>
+                <div class="mini-progress">
+                    <svg class="mini-ring" width="60" height="60">
+                        <circle class="progress-ring-bg" cx="30" cy="30" r="26" stroke-width="4" fill="none"/>
+                        <circle class="progress-ring-fill sleep-progress" cx="30" cy="30" r="26" stroke-width="4" fill="none" stroke-dasharray="163" stroke-dashoffset="32.6"/>
+                    </svg>
+                </div>
+                <div class="score-text">
+                    <div class="score-value">85</div>
+                    <div class="score-label">Score</div>
+                </div>
+            </div>
+
+            <!-- Water Tracker -->
+            <div class="tracker-card water-card" data-tracker="water">
+                <div class="card-header">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.69L17.66 8.35C20.78 11.47 20.78 16.53 17.66 19.65C14.54 22.77 9.46 22.77 6.34 19.65C3.22 16.53 3.22 11.47 6.34 8.35L12 2.69Z" fill="currentColor"/>
+                    </svg>
+                    <span>Water</span>
+                </div>
+                <div class="water-bars">
+                    <div class="bar filled"></div>
+                    <div class="bar filled"></div>
+                    <div class="bar filled"></div>
+                    <div class="bar filled"></div>
+                    <div class="bar filled"></div>
+                    <div class="bar filled"></div>
+                    <div class="bar empty"></div>
+                    <div class="bar empty"></div>
+                </div>
+                <div class="water-text">
+                    <div class="water-value">1.2</div>
+                    <div class="water-label">Liters</div>
+                </div>
+            </div>
+
+            <!-- Walk Tracker -->
+            <div class="tracker-card walk-card" data-tracker="walk">
+                <div class="card-header">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.5 5.5C14.88 5.5 16 4.38 16 3C16 1.62 14.88 0.5 13.5 0.5C12.12 0.5 11 1.62 11 3C11 4.38 12.12 5.5 13.5 5.5ZM9.89 19.38L10.89 15L13 17V23H15V15.5L12.89 13.5L13.5 10.5C14.79 12 16.79 13 19 13V11C17.09 11 15.5 10 14.69 8.58L13.69 7.08C13.29 6.38 12.59 6 11.79 6C11.29 6 10.89 6.08 10.49 6.38L6 9.18V14H8V10.38L9.89 8.38L8.19 17L3.29 16L2.89 18L9.89 19.38Z" fill="currentColor"/>
+                    </svg>
+                    <span>Walk</span>
+                </div>
+                <div class="mini-progress">
+                    <svg class="mini-ring" width="60" height="60">
+                        <circle class="progress-ring-bg" cx="30" cy="30" r="26" stroke-width="4" fill="none"/>
+                        <circle class="progress-ring-fill walk-progress" cx="30" cy="30" r="26" stroke-width="4" fill="none" stroke-dasharray="163" stroke-dashoffset="81.5"/>
+                    </svg>
+                </div>
+                <div class="steps-text">
+                    <div class="steps-value">2,227</div>
+                    <div class="steps-label">Steps</div>
+                </div>
+            </div>
+
+            <!-- Training Tracker -->
+            <div class="tracker-card training-card" data-tracker="training">
+                <div class="card-header">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14L4.14 5.57L2 7.71L3.43 9.14L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22L14.86 20.57L16.29 22L18.43 19.86L19.86 21.29L21.29 19.86L19.86 18.43L22 16.29L20.57 14.86Z" fill="currentColor"/>
+                    </svg>
+                    <span>Training</span>
+                </div>
+                <div class="training-text">
+                    <div class="training-value">0</div>
+                    <div class="training-label">Min</div>
+                </div>
+            </div>
+
+            <!-- Heart Tracker -->
+            <div class="tracker-card heart-card" data-tracker="heart">
+                <div class="card-header">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.84 4.61C20.3 4.07 19.66 3.64 18.96 3.35C18.26 3.06 17.51 2.91 16.75 2.91C16 2.91 15.25 3.06 14.55 3.35C13.84 3.64 13.21 4.07 12.67 4.61L12 5.28L11.33 4.61C10.24 3.52 8.76 2.91 7.23 2.91C5.69 2.91 4.21 3.52 3.13 4.61C2.04 5.69 1.43 7.17 1.43 8.71C1.43 10.24 2.04 11.72 3.13 12.81L11.29 20.97C11.48 21.16 11.74 21.27 12 21.27C12.26 21.27 12.52 21.16 12.71 20.97L20.87 12.81C21.96 11.72 22.57 10.24 22.57 8.71C22.57 7.17 21.96 5.69 20.84 4.61Z" fill="currentColor"/>
+                    </svg>
+                    <span>Heart</span>
+                </div>
+                <div class="heart-bars">
+                    <div class="heart-bar" style="height: 30%"></div>
+                    <div class="heart-bar" style="height: 50%"></div>
+                    <div class="heart-bar" style="height: 35%"></div>
+                    <div class="heart-bar" style="height: 60%"></div>
+                    <div class="heart-bar" style="height: 45%"></div>
+                    <div class="heart-bar" style="height: 55%"></div>
+                    <div class="heart-bar" style="height: 40%"></div>
+                </div>
+                <div class="score-text">
+                    <div class="score-value">85</div>
+                    <div class="score-label">Score</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="add-tracker-fab" id="addTrackerBtn">+</button>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav glass-tile">
+            <a href="index.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a href="toolbox.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 7h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM9 4h6v3H9V4zm11 16H4V9h3v2h2V9h6v2h2V9h3v11z" fill="currentColor"/>
+                </svg>
+                <span class="active-dot"></span>
+            </a>
+            <a href="people.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <a href="innate.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </nav>
+    </div>
+
+    <script src="trackers.js"></script>
+</body>
+</html>
