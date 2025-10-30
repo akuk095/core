@@ -1,0 +1,557 @@
+/* Trackers Page Styles */
+
+/* Page Header */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.back-btn,
+.menu-btn {
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+    color: var(--text-primary);
+}
+
+.back-btn:hover,
+.menu-btn:hover {
+    background: var(--glass-bg);
+    transform: scale(1.05);
+}
+
+.back-btn svg,
+.menu-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Trackers Grid */
+.trackers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 120px;
+}
+
+/* Tracker Cards */
+.tracker-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tracker-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.tracker-card.large-card {
+    grid-column: span 2;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.card-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+/* Calories Card */
+.calories-card {
+    background: linear-gradient(135deg, #2d3561 0%, #1e2347 100%);
+    color: white;
+}
+
+.calories-card .card-header {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.progress-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+.calories-progress {
+    stroke: #ff006e;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-text {
+    position: absolute;
+    text-align: center;
+}
+
+.current-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.unit {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: -4px;
+}
+
+.goal-text {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Sleep Card */
+.sleep-card .card-icon {
+    color: #ffbe0b;
+}
+
+.mini-progress {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.mini-ring {
+    transform: rotate(-90deg);
+}
+
+.sleep-progress {
+    stroke: #ffbe0b;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.score-text {
+    text-align: center;
+}
+
+.score-value,
+.steps-value,
+.water-value,
+.training-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.score-label,
+.steps-label,
+.water-label,
+.training-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Water Card */
+.water-card .card-icon {
+    color: #4895ef;
+}
+
+.water-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 60px;
+    margin: 16px 0;
+    gap: 4px;
+}
+
+.bar {
+    flex: 1;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.bar.filled {
+    background: #4895ef;
+    height: 100%;
+}
+
+.bar.empty {
+    background: rgba(72, 149, 239, 0.2);
+    height: 40%;
+}
+
+.water-text {
+    text-align: center;
+}
+
+/* Walk Card */
+.walk-card .card-icon {
+    color: #fb5607;
+}
+
+.walk-progress {
+    stroke: #fb5607;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.steps-text {
+    text-align: center;
+}
+
+/* Training Card */
+.training-card .card-icon {
+    color: var(--accent-color);
+}
+
+.training-text {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Heart Card */
+.heart-card .card-icon {
+    color: #e63946;
+}
+
+.heart-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 60px;
+    margin: 16px 0;
+    gap: 3px;
+}
+
+.heart-bar {
+    flex: 1;
+    background: var(--text-secondary);
+    border-radius: 3px;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+/* Floating Action Button */
+.add-tracker-fab {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+}
+
+.add-tracker-fab:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Tracker Detail Page */
+
+/* Period Tabs */
+.period-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 0 4px;
+}
+
+.period-tab {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.period-tab.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.period-tab:hover:not(.active) {
+    background: var(--glass-bg);
+}
+
+/* Detail Content */
+.detail-content {
+    margin-bottom: 120px;
+}
+
+/* Date Progress Circle */
+.date-progress-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px 0;
+    height: 140px;
+}
+
+.date-progress-ring {
+    transform: rotate(-90deg);
+}
+
+.date-progress {
+    stroke: #fb5607;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.main-date-circle {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .main-date-circle {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.date-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.date-month {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: -4px;
+}
+
+.mini-date-circle {
+    position: absolute;
+    left: calc(50% - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.mini-date-circle-right {
+    position: absolute;
+    right: calc(50% - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.mini-date-circle .date-value,
+.mini-date-circle-right .date-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Stats Row */
+.stats-row {
+    display: flex;
+    justify-content: space-around;
+    margin: 32px 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Activity Chart */
+.activity-chart {
+    position: relative;
+    background: linear-gradient(135deg, #2d3561 0%, #1e2347 100%);
+    border-radius: 20px;
+    padding: 24px 20px 16px;
+    min-height: 240px;
+    margin-top: 24px;
+}
+
+[data-theme="dark"] .activity-chart {
+    background: linear-gradient(135deg, #1e3a4f 0%, #2c3e50 100%);
+}
+
+.time-label {
+    position: absolute;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+.time-label-left {
+    top: 16px;
+    left: 20px;
+}
+
+.time-label-center {
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.time-label-center-right {
+    top: 16px;
+    right: 80px;
+}
+
+.time-label-right {
+    top: 16px;
+    right: 20px;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 160px;
+    margin-top: 36px;
+    gap: 2px;
+}
+
+.chart-bar {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    min-height: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.chart-bar.highlight {
+    background: #ff006e;
+    box-shadow: 0 0 12px rgba(255, 0, 110, 0.5);
+}
+
+.chart-bar.highlight::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #ff006e;
+    background: rgba(255, 0, 110, 0.15);
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+
+.time-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.time-marker {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 380px) {
+    .trackers-grid {
+        gap: 12px;
+    }
+
+    .tracker-card {
+        padding: 16px;
+    }
+
+    .period-tab {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+    }
+
+    .stats-row {
+        margin: 24px 0;
+    }
+
+    .stat-value {
+        font-size: 1.3rem;
+    }
+}
