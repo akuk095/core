@@ -85,6 +85,13 @@ function renderTodaysTasks() {
     const container = document.querySelector('.tasks-container');
     if (!container) return;
 
+    // Ensure we have valid data - if empty, reset to defaults
+    const allRoutines = loadAllRoutines();
+    if (Object.keys(allRoutines).length === 0 || !allRoutines[getCurrentContext()]) {
+        console.log('No valid routine data found, resetting to defaults');
+        saveAllRoutines(getDefaultRoutines());
+    }
+
     const todaysTasks = getTodaysTasks();
 
     if (todaysTasks.length === 0) {
@@ -162,6 +169,9 @@ function renderTodaysTasks() {
     });
 
     container.innerHTML = html;
+
+    // Initialize task cards after rendering
+    initializeTaskCards();
 }
 
 // Format time to 12-hour format
