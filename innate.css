@@ -67,19 +67,19 @@ body.menu-open {
 
 .progress-ring-fill {
     fill: none;
-    stroke: #008080;
+    stroke: hsl(180, 100%, 25%);
     stroke-width: 8;
     stroke-linecap: round;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: drop-shadow(0 0 8px rgba(0, 128, 128, 0.5));
+    filter: drop-shadow(0 0 8px hsla(180, 100%, 25%, 0.5));
 }
 
 .progress-percentage {
     font-size: 24px;
     font-weight: 700;
-    fill: #008080;
+    fill: hsl(180, 100%, 25%);
     text-anchor: middle;
     dominant-baseline: middle;
 }
@@ -186,14 +186,14 @@ body.menu-open {
     padding: 20px;
     cursor: pointer;
     position: relative;
-    border-left: 3px solid rgba(0, 128, 128, 0.3);
+    border-left: 3px solid hsla(180, 100%, 25%, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .trait-card:hover {
-    border-left-color: rgba(0, 128, 128, 0.6);
+    border-left-color: hsla(180, 100%, 25%, 0.6);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
 }
 
 .trait-header {
@@ -219,10 +219,10 @@ body.menu-open {
     justify-content: center;
     width: 24px;
     height: 24px;
-    background: rgba(0, 128, 128, 0.2);
-    border: 2px solid #008080;
+    background: hsla(180, 100%, 25%, 0.2);
+    border: 2px solid hsl(180, 100%, 25%);
     border-radius: 50%;
-    color: #008080;
+    color: hsl(180, 100%, 25%);
     font-size: 12px;
     font-weight: 700;
     flex-shrink: 0;
@@ -230,8 +230,8 @@ body.menu-open {
 
 /* Completed trait cards get teal gradient */
 .trait-card.completed {
-    background: linear-gradient(135deg, rgba(0, 128, 128, 0.15) 0%, rgba(0, 128, 128, 0.05) 100%);
-    border-left-color: #008080;
+    background: linear-gradient(135deg, hsla(180, 100%, 25%, 0.15) 0%, hsla(180, 100%, 25%, 0.05) 100%);
+    border-left-color: hsl(180, 100%, 25%);
 }
 
 /* Hide expand icon (arrows removed from design) */
@@ -251,7 +251,7 @@ body.menu-open {
     justify-content: space-between;
     align-items: center;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1);
     opacity: 1;
     /* Smooth fade in/out animation when expanding/collapsing */
     transition: opacity 0.3s ease, max-height 0.3s ease;
@@ -271,7 +271,7 @@ body.menu-open {
 .trait-summary-value {
     font-size: 14px;
     font-weight: 500;
-    color: rgba(127, 255, 212, 0.9); /* Cyan color to indicate it's a filled value */
+    color: hsla(160, 100%, 75%, 0.9); /* Cyan color to indicate it's a filled value */
 }
 
 /* Action indicator (Improve/Modify/Accept) */
@@ -284,18 +284,18 @@ body.menu-open {
 
 /* Color coding for different actions */
 .trait-summary-action.improve {
-    color: #64FF96;
-    background: rgba(100, 255, 150, 0.15);
+    color: hsl(140, 100%, 70%);
+    background: hsla(140, 100%, 70%, 0.15);
 }
 
 .trait-summary-action.modify {
-    color: #FFC864;
-    background: rgba(255, 200, 100, 0.15);
+    color: hsl(41, 100%, 70%);
+    background: hsla(41, 100%, 70%, 0.15);
 }
 
 .trait-summary-action.accept {
-    color: #7FFFD4;
-    background: rgba(127, 255, 212, 0.15);
+    color: hsl(160, 100%, 75%);
+    background: hsla(160, 100%, 75%, 0.15);
 }
 
 /* ==========================================
@@ -361,7 +361,7 @@ body.menu-open {
 /* Cyan color for completed subtrait labels */
 .subtrait-card.completed span {
     font-size: 16px;
-    color: #7FFFD4;
+    color: hsl(160, 100%, 75%);
 }
 
 /* Hide selection arrow icons (removed from design) */
@@ -392,22 +392,22 @@ body.menu-open {
 */
 .subtrait-card.menu-opening {
     transform: scale(1.02); /* Slight scale up */
-    background: rgba(0, 128, 128, 0.2); /* Teal background */
-    border: 2px solid rgba(0, 128, 128, 0.5); /* Teal border */
-    box-shadow: 0 0 24px rgba(0, 128, 128, 0.4); /* Teal glow */
+    background: hsla(180, 100%, 25%, 0.2); /* Teal background */
+    border: 2px solid hsla(180, 100%, 25%, 0.5); /* Teal border */
+    box-shadow: 0 0 24px hsla(180, 100%, 25%, 0.4); /* Teal glow */
     z-index: 1000; /* Keep above overlay so it stays visible */
 }
 
 /* Success pulse animation for completed subtraits */
 @keyframes successPulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 128, 128, 0.7);
+        box-shadow: 0 0 0 0 hsla(180, 100%, 25%, 0.7);
     }
     50% {
-        box-shadow: 0 0 0 20px rgba(0, 128, 128, 0);
+        box-shadow: 0 0 0 20px hsla(180, 100%, 25%, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(0, 128, 128, 0);
+        box-shadow: 0 0 0 0 hsla(180, 100%, 25%, 0);
     }
 }
 
@@ -481,9 +481,9 @@ body.menu-open {
 }
 
 .menu-option:hover {
-    background: rgba(127, 255, 212, 0.15);
-    border-color: rgba(127, 255, 212, 0.3);
-    color: #7FFFD4;
+    background: hsla(160, 100%, 75%, 0.15);
+    border-color: hsla(160, 100%, 75%, 0.3);
+    color: hsl(160, 100%, 75%);
     transform: translateX(5px);
 }
 
@@ -498,7 +498,7 @@ body.menu-open {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: hsla(0, 0%, 0%, 0.7);
     backdrop-filter: blur(8px);
     display: none;
     align-items: center;
@@ -560,10 +560,10 @@ body.menu-open {
 
 .dialogue-btn {
     padding: 12px 30px;
-    background: rgba(127, 255, 212, 0.25);
-    border: 1px solid rgba(127, 255, 212, 0.3);
+    background: hsla(160, 100%, 75%, 0.25);
+    border: 1px solid hsla(160, 100%, 75%, 0.3);
     border-radius: 12px;
-    color: #7FFFD4;
+    color: hsl(160, 100%, 75%);
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
@@ -572,7 +572,7 @@ body.menu-open {
 }
 
 .dialogue-btn:hover {
-    background: rgba(127, 255, 212, 0.35);
+    background: hsla(160, 100%, 75%, 0.35);
     transform: translateY(-2px);
 }
 
@@ -587,21 +587,21 @@ body.menu-open {
 }
 
 .dialogue-btn.improve {
-    background: rgba(100, 255, 150, 0.25);
-    border-color: rgba(100, 255, 150, 0.3);
-    color: #64FF96;
+    background: hsla(140, 100%, 70%, 0.25);
+    border-color: hsla(140, 100%, 70%, 0.3);
+    color: hsl(140, 100%, 70%);
 }
 
 .dialogue-btn.modify {
-    background: rgba(255, 200, 100, 0.25);
-    border-color: rgba(255, 200, 100, 0.3);
-    color: #FFC864;
+    background: hsla(41, 100%, 70%, 0.25);
+    border-color: hsla(41, 100%, 70%, 0.3);
+    color: hsl(41, 100%, 70%);
 }
 
 .dialogue-btn.accept {
-    background: rgba(127, 255, 212, 0.25);
-    border-color: rgba(127, 255, 212, 0.3);
-    color: #7FFFD4;
+    background: hsla(160, 100%, 75%, 0.25);
+    border-color: hsla(160, 100%, 75%, 0.3);
+    color: hsl(160, 100%, 75%);
 }
 
 /* Completed Subtrait Display */
@@ -614,7 +614,7 @@ body.menu-open {
 .subtrait-value {
     font-size: 18px;
     font-weight: 600;
-    color: #7FFFD4;
+    color: hsl(160, 100%, 75%);
     margin-bottom: 8px;
 }
 
@@ -628,18 +628,18 @@ body.menu-open {
 }
 
 .subtrait-action.improve {
-    color: #64FF96;
-    background: rgba(100, 255, 150, 0.15);
+    color: hsl(140, 100%, 70%);
+    background: hsla(140, 100%, 70%, 0.15);
 }
 
 .subtrait-action.modify {
-    color: #FFC864;
-    background: rgba(255, 200, 100, 0.15);
+    color: hsl(41, 100%, 70%);
+    background: hsla(41, 100%, 70%, 0.15);
 }
 
 .subtrait-action.accept {
-    color: #7FFFD4;
-    background: rgba(127, 255, 212, 0.15);
+    color: hsl(160, 100%, 75%);
+    background: hsla(160, 100%, 75%, 0.15);
 }
 
 .subtrait-reason {
@@ -663,7 +663,7 @@ body.menu-open {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: hsla(0, 0%, 0%, 0.6);
     z-index: 1500;
     opacity: 0;
     pointer-events: none;

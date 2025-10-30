@@ -65,7 +65,7 @@
 
 .tracker-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.1);
 }
 
 .card-header {
@@ -86,12 +86,12 @@
 
 /* Calories Card */
 .calories-card {
-    background: linear-gradient(135deg, #2d3561 0%, #1e2347 100%);
-    color: white;
+    background: linear-gradient(135deg, hsl(233, 33%, 29%) 0%, hsl(234, 43%, 20%) 100%);
+    color: hsl(0, 0%, 100%);
 }
 
 .calories-card .card-header {
-    color: rgba(255, 255, 255, 0.9);
+    color: hsla(0, 0%, 100%, 0.9);
 }
 
 .progress-container {
@@ -107,11 +107,11 @@
 }
 
 .progress-ring-bg {
-    stroke: rgba(255, 255, 255, 0.1);
+    stroke: hsla(0, 0%, 100%, 0.1);
 }
 
 .calories-progress {
-    stroke: #ff006e;
+    stroke: hsl(328, 100%, 50%);
     stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease;
 }
@@ -124,24 +124,24 @@
 .current-value {
     font-size: 2rem;
     font-weight: 600;
-    color: white;
+    color: hsl(0, 0%, 100%);
 }
 
 .unit {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: hsla(0, 0%, 100%, 0.7);
     margin-top: -4px;
 }
 
 .goal-text {
     text-align: center;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: hsla(0, 0%, 100%, 0.6);
 }
 
 /* Sleep Card */
 .sleep-card .card-icon {
-    color: #ffbe0b;
+    color: hsl(45, 100%, 52%);
 }
 
 .mini-progress {
@@ -155,7 +155,7 @@
 }
 
 .sleep-progress {
-    stroke: #ffbe0b;
+    stroke: hsl(45, 100%, 52%);
     stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease;
 }
@@ -184,7 +184,7 @@
 
 /* Water Card */
 .water-card .card-icon {
-    color: #4895ef;
+    color: hsl(217, 83%, 73%);
 }
 
 .water-bars {
@@ -203,12 +203,12 @@
 }
 
 .bar.filled {
-    background: #4895ef;
+    background: hsl(217, 83%, 73%);
     height: 100%;
 }
 
 .bar.empty {
-    background: rgba(72, 149, 239, 0.2);
+    background: hsla(217, 83%, 73%, 0.2);
     height: 40%;
 }
 
@@ -218,11 +218,11 @@
 
 /* Walk Card */
 .walk-card .card-icon {
-    color: #fb5607;
+    color: hsl(20, 97%, 51%);
 }
 
 .walk-progress {
-    stroke: #fb5607;
+    stroke: hsl(20, 97%, 51%);
     stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease;
 }
@@ -243,7 +243,7 @@
 
 /* Heart Card */
 .heart-card .card-icon {
-    color: #e63946;
+    color: hsl(356, 74%, 56%);
 }
 
 .heart-bars {
@@ -274,10 +274,10 @@
     border-radius: 50%;
     background: var(--accent-color);
     border: none;
-    color: white;
+    color: hsl(0, 0%, 100%);
     font-size: 1.8rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 12px hsla(239, 84%, 67%, 0.3);
     transition: all 0.3s ease;
     z-index: 100;
     display: flex;
@@ -288,7 +288,7 @@
 
 .add-tracker-fab:hover {
     transform: translateX(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 6px 20px hsla(239, 84%, 67%, 0.4);
 }
 
 /* Tracker Detail Page */
@@ -317,7 +317,7 @@
 
 .period-tab.active {
     background: var(--accent-color);
-    color: white;
+    color: hsl(0, 0%, 100%);
 }
 
 .period-tab:hover:not(.active) {
@@ -344,7 +344,7 @@
 }
 
 .date-progress {
-    stroke: #fb5607;
+    stroke: hsl(20, 97%, 51%);
     stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease;
 }
@@ -358,12 +358,12 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.1);
 }
 
 [data-theme="dark"] .main-date-circle {
-    background: rgba(255, 255, 255, 0.1);
+    background: hsla(0, 0%, 100%, 0.1);
     backdrop-filter: blur(10px);
 }
 
@@ -441,7 +441,7 @@
 /* Activity Chart */
 .activity-chart {
     position: relative;
-    background: linear-gradient(135deg, #2d3561 0%, #1e2347 100%);
+    background: linear-gradient(135deg, hsl(233, 33%, 29%) 0%, hsl(234, 43%, 20%) 100%);
     border-radius: 20px;
     padding: 24px 20px 16px;
     min-height: 240px;
@@ -449,13 +449,13 @@
 }
 
 [data-theme="dark"] .activity-chart {
-    background: linear-gradient(135deg, #1e3a4f 0%, #2c3e50 100%);
+    background: linear-gradient(135deg, hsl(205, 44%, 21%) 0%, hsl(210, 29%, 24%) 100%);
 }
 
 .time-label {
     position: absolute;
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: hsla(0, 0%, 100%, 0.5);
     font-weight: 500;
 }
 
@@ -491,7 +491,7 @@
 
 .chart-bar {
     flex: 1;
-    background: rgba(255, 255, 255, 0.3);
+    background: hsla(0, 0%, 100%, 0.3);
     border-radius: 3px;
     min-height: 8px;
     transition: all 0.3s ease;
@@ -499,8 +499,8 @@
 }
 
 .chart-bar.highlight {
-    background: #ff006e;
-    box-shadow: 0 0 12px rgba(255, 0, 110, 0.5);
+    background: hsl(328, 100%, 50%);
+    box-shadow: 0 0 12px hsla(328, 100%, 50%, 0.5);
 }
 
 .chart-bar.highlight::after {
@@ -511,8 +511,8 @@
     transform: translateX(-50%);
     font-size: 0.7rem;
     font-weight: 600;
-    color: #ff006e;
-    background: rgba(255, 0, 110, 0.15);
+    color: hsl(328, 100%, 50%);
+    background: hsla(328, 100%, 50%, 0.15);
     padding: 2px 6px;
     border-radius: 8px;
 }
@@ -522,12 +522,12 @@
     justify-content: space-between;
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1);
 }
 
 .time-marker {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: hsla(0, 0%, 100%, 0.5);
     font-weight: 500;
 }
 
