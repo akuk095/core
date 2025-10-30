@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="design-system.css">
 </head>
 <body>
     <div class="container">
@@ -18,7 +19,7 @@
                 <p class="date" id="currentDate"></p>
             </div>
             <div class="header-buttons">
-                <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+                <button class="theme-toggle-btn icon-btn" id="themeToggle" aria-label="Toggle theme">
                     <!-- Light Mode Icon (Sun) -->
                     <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 12C18 15.3137 15.3137 18 12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12Z" fill="currentColor"/>
@@ -29,7 +30,7 @@
                         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/>
                     </svg>
                 </button>
-                <button class="menu-btn">
+                <button class="menu-btn icon-btn">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 6.5C2 4.37868 2 3.31802 2.65901 2.65901C3.31802 2 4.37868 2 6.5 2C8.62132 2 9.68198 2 10.341 2.65901C11 3.31802 11 4.37868 11 6.5C11 8.62132 11 9.68198 10.341 10.341C9.68198 11 8.62132 11 6.5 11C4.37868 11 3.31802 11 2.65901 10.341C2 9.68198 2 8.62132 2 6.5Z" fill="currentColor"/>
                         <path d="M13 17.5C13 15.3787 13 14.318 13.659 13.659C14.318 13 15.3787 13 17.5 13C19.6213 13 20.682 13 21.341 13.659C22 14.318 22 15.3787 22 17.5C22 19.6213 22 20.682 21.341 21.341C20.682 22 19.6213 22 17.5 22C15.3787 22 14.318 22 13.659 21.341C13 20.682 13 19.6213 13 17.5Z" fill="currentColor"/>
@@ -43,18 +44,18 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Tools Navigation Bar -->
-            <nav class="tools-nav">
-                <button class="tool-btn">Routines</button>
-                <button class="tool-btn">Trackers</button>
-                <button class="tool-btn">Journals</button>
-                <button class="tool-btn">Exercise logs</button>
-                <button class="tool-btn">Recipes</button>
-                <button class="tool-btn">People</button>
+            <nav class="scroll-nav">
+                <a href="routines.html" class="scroll-nav-item">Routines</a>
+                <a href="trackers.html" class="scroll-nav-item">Trackers</a>
+                <a href="#" class="scroll-nav-item">Journals</a>
+                <a href="#" class="scroll-nav-item">Exercise logs</a>
+                <a href="#" class="scroll-nav-item">Recipes</a>
+                <a href="people.html" class="scroll-nav-item">People</a>
             </nav>
 
             <!-- Life Domains Grid -->
-            <div class="domains-grid">
-                <a href="innate.html" class="domain-card glass-tile domain-innate">
+            <div class="domains-grid masonry-grid">
+                <a href="innate.html" class="domain-card glass-tile domain-innate card card-interactive">
                     <div class="card-header">
                         <svg class="domain-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.62442 4.4489C9.50121 3.69796 10.6208 3.25 12 3.25C13.3792 3.25 14.4988 3.69796 16.3756 4.4489L19.3451 5.6367C20.2996 6.01851 21.0728 6.32776 21.6035 6.60601C21.8721 6.74683 22.1323 6.90648 22.333 7.09894C22.5392 7.29668 22.75 7.59658 22.75 8C22.75 8.40342 22.5392 8.70332 22.333 8.90106C22.1323 9.09352 21.8721 9.25317 21.6035 9.39399C21.0728 9.67223 20.2996 9.98148 19.3451 10.3633L16.3756 11.5511C14.4988 12.302 13.3792 12.75 12 12.75C10.6208 12.75 9.50121 12.302 7.62443 11.5511L4.65495 10.3633C3.70037 9.98149 2.9272 9.67223 2.39647 9.39399C2.12786 9.25317 1.86765 9.09352 1.66701 8.90106C1.46085 8.70332 1.25 8.40342 1.25 8C1.25 7.59658 1.46085 7.29668 1.66701 7.09894C1.86765 6.90648 2.12786 6.74683 2.39647 6.60601C2.92721 6.32776 3.70037 6.01851 4.65496 5.63669L7.62442 4.4489Z" fill="currentColor"/>
@@ -70,7 +71,7 @@
                     <p class="device-count">Core values</p>
                 </a>
 
-                <a href="mind.html" class="domain-card glass-tile domain-mind">
+                <a href="mind.html" class="domain-card glass-tile domain-mind card card-interactive">
                     <div class="card-header">
                         <svg class="domain-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 2C7.35786 2 4 5.43595 4 9.67442C4 11.9468 4.96602 13.9892 6.49859 15.3934C7.0094 15.8614 7.38782 16.2082 7.65601 16.4598C7.7901 16.5855 7.89262 16.6838 7.9683 16.7592C8.00601 16.7968 8.03486 16.8266 8.05635 16.8496C8.06699 16.861 8.07499 16.8699 8.0808 16.8766C8.08649 16.8831 8.0892 16.8864 8.0892 16.8864C8.32571 17.1851 8.3769 17.2622 8.40739 17.332C8.43787 17.4018 8.45982 17.4922 8.51949 17.8717C8.54305 18.0216 8.54545 18.2782 8.54545 18.9767L8.54545 19.0067C8.54544 19.4158 8.54543 19.7687 8.57107 20.0583C8.5982 20.3645 8.65825 20.6677 8.81949 20.9535C8.99902 21.2717 9.25723 21.5359 9.56818 21.7196C9.84747 21.8846 10.1438 21.946 10.443 21.9738C10.726 22 11.0709 22 11.4707 22H11.5293C11.9291 22 12.274 22 12.557 21.9738C12.8562 21.946 13.1525 21.8846 13.4318 21.7196C13.7428 21.5359 14.001 21.2717 14.1805 20.9535C14.3418 20.6677 14.4018 20.3645 14.4289 20.0583C14.4546 19.7687 14.4546 19.4158 14.4545 19.0067V18.9767C14.4545 18.2782 14.457 18.0216 14.4805 17.8717C14.5402 17.4922 14.5621 17.4018 14.5926 17.332C14.6231 17.2622 14.6743 17.1851 14.9108 16.8864C14.9108 16.8864 14.9118 16.8852 14.914 16.8826C14.914 16.8826 14.917 16.8791 14.9192 16.8766C14.925 16.8699 14.933 16.861 14.9436 16.8496C14.9651 16.8266 14.994 16.7968 15.0317 16.7592C15.1074 16.6838 15.2099 16.5855 15.344 16.4598C15.6122 16.2082 15.9906 15.8614 16.5014 15.3934C18.034 13.9892 19 11.9468 19 9.67442C19 5.43595 15.6421 2 11.5 2ZM13.0709 19.9323C13.0776 19.8561 13.0821 19.7714 13.0851 19.6744H9.91494C9.91791 19.7714 9.92239 19.8561 9.92914 19.9323C9.9477 20.1418 9.97899 20.2178 10.0004 20.2558C10.0603 20.3619 10.1463 20.4499 10.25 20.5112C10.2871 20.5331 10.3615 20.5651 10.5661 20.5841C10.7802 20.604 11.0626 20.6047 11.5 20.6047C11.9374 20.6047 12.2198 20.604 12.4339 20.5841C12.6385 20.5651 12.7129 20.5331 12.75 20.5112C12.8537 20.4499 12.9397 20.3619 12.9996 20.2558C13.021 20.2178 13.0523 20.1418 13.0709 19.9323Z" fill="currentColor"/>
@@ -86,7 +87,7 @@
                     <p class="device-count">Mental growth</p>
                 </a>
 
-                <a href="body.html" class="domain-card glass-tile domain-body">
+                <a href="body.html" class="domain-card glass-tile domain-body card card-interactive">
                     <div class="card-header">
                         <svg class="domain-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.34594 11.2501C2.12458 10.5866 2 9.92019 2 9.26044C2 3.3495 7.50016 0.662637 12 5.49877C16.4998 0.662637 22 3.34931 22 9.2604C22 9.92017 21.8754 10.5866 21.6541 11.2501H18.6361L18.5241 11.25C17.9784 11.2491 17.4937 11.2483 17.0527 11.4447C16.6116 11.6411 16.2879 12.002 15.9233 12.4084L15.8485 12.4918L14.8192 13.6354C14.7426 13.7205 14.68 13.79 14.6247 13.8493C14.5723 13.7879 14.5128 13.7159 14.4401 13.6277L10.8889 9.32318C10.7493 9.15391 10.6 8.97281 10.454 8.8384C10.2839 8.68188 10.0325 8.50581 9.68096 8.4847C9.32945 8.46359 9.05875 8.60829 8.87115 8.74333C8.71006 8.8593 8.54016 9.02123 8.38136 9.17258L6.85172 10.6294C6.37995 11.0787 6.28151 11.1553 6.17854 11.1964C6.07557 11.2376 5.9515 11.2501 5.3 11.2501H2.34594Z" fill="currentColor"/>
@@ -102,7 +103,7 @@
                     <p class="device-count">Physical health</p>
                 </a>
 
-                <a href="social.html" class="domain-card glass-tile domain-social">
+                <a href="social.html" class="domain-card glass-tile domain-social card card-interactive">
                     <div class="card-header">
                         <svg class="domain-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 6C9 7.65685 10.3431 9 12 9C13.6569 9 15 7.65685 15 6C15 4.34315 13.6569 3 12 3C10.3431 3 9 4.34315 9 6Z" fill="currentColor"/>
@@ -122,7 +123,7 @@
                     <p class="device-count">Relationships</p>
                 </a>
 
-                <a href="professional.html" class="domain-card glass-tile domain-professional">
+                <a href="professional.html" class="domain-card glass-tile domain-professional card card-interactive">
                     <div class="card-header">
                         <svg class="domain-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.16208 8.49969C2 9.60346 2 11.0495 2 13C2 16.7712 2 18.6569 3.17157 19.8284C4.34315 21 6.22876 21 10 21H14C17.7712 21 19.6569 21 20.8284 19.8284C22 18.6569 22 16.7712 22 13C22 11.0497 22 9.60364 21.8379 8.49989C19.5613 9.97971 18.1021 10.9235 16.7501 11.5047V12.0001C16.7501 12.4143 16.4143 12.7501 16.0001 12.7501C15.5914 12.7501 15.259 12.4231 15.2503 12.0165C13.12 12.5781 10.8802 12.5781 8.74991 12.0165C8.74121 12.4231 8.40883 12.7501 8.00009 12.7501C7.58587 12.7501 7.25009 12.4143 7.25009 12.0001V11.5046C5.89804 10.9234 4.43881 9.97957 2.16208 8.49969Z" fill="currentColor"/>
@@ -138,7 +139,7 @@
                     <p class="device-count">Career growth</p>
                 </a>
 
-                <a href="adaptation.html" class="domain-card glass-tile domain-adaptation">
+                <a href="adaptation.html" class="domain-card glass-tile domain-adaptation card card-interactive">
                     <div class="card-header">
                         <svg class="domain-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16 15.25C16.6904 15.25 17.25 14.6904 17.25 14C17.25 13.3096 16.6904 12.75 16 12.75C15.3096 12.75 14.75 13.3096 14.75 14C14.75 14.6904 15.3096 15.25 16 15.25Z" fill="currentColor"/>

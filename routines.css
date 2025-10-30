@@ -90,7 +90,7 @@
 
 .play-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.15);
 }
 
 .play-btn:active {
@@ -145,18 +145,18 @@
 
 /* Task Card States */
 .task-card.completed {
-    background: rgba(99, 102, 241, 0.08);
-    border-color: rgba(99, 102, 241, 0.2);
+    background: hsla(239, 84%, 67%, 0.08);
+    border-color: hsla(239, 84%, 67%, 0.2);
 }
 
 [data-theme="dark"] .task-card.completed {
-    background: rgba(127, 255, 212, 0.08);
-    border-color: rgba(127, 255, 212, 0.2);
+    background: hsla(160, 100%, 75%, 0.08);
+    border-color: hsla(160, 100%, 75%, 0.2);
 }
 
 .task-card.skipped {
-    background: rgba(239, 68, 68, 0.08);
-    border-color: rgba(239, 68, 68, 0.2);
+    background: hsla(4, 84%, 60%, 0.08);
+    border-color: hsla(4, 84%, 60%, 0.2);
 }
 
 /* Task Content */
@@ -175,12 +175,12 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.5);
+    background: hsla(0, 0%, 100%, 0.5);
     border-radius: 12px;
 }
 
 [data-theme="dark"] .task-icon {
-    background: rgba(255, 255, 255, 0.1);
+    background: hsla(0, 0%, 100%, 0.1);
 }
 
 /* Task Info */
@@ -235,7 +235,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.1);
 }
 
 [data-theme="dark"] .task-status-btn {
@@ -252,7 +252,7 @@
 
 /* Completed Status */
 .task-status-btn.completed {
-    background: #6366f1;
+    background: hsl(239, 84%, 67%);
     border: none;
 }
 
@@ -268,7 +268,7 @@
 
 /* Skipped Status */
 .task-status-btn.skipped {
-    background: #ef4444;
+    background: hsl(4, 84%, 60%);
     border: none;
 }
 

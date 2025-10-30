@@ -1,0 +1,911 @@
+/* ==========================================
+   INNATE APP DESIGN SYSTEM
+   Based on Tracker Page UI/UX
+   ========================================== */
+
+/* ==========================================
+   1. PAGE LAYOUT COMPONENTS
+   ========================================== */
+
+/* Standard Page Header - Used across all pages */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.page-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.header-title-section h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--text-primary);
+}
+
+.header-date {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ==========================================
+   2. BUTTON COMPONENTS
+   ========================================== */
+
+/* Icon Buttons - Back, Menu, Settings */
+.back-btn,
+.menu-btn,
+.settings-btn,
+.edit-btn {
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+    color: var(--text-primary);
+}
+
+.back-btn:hover,
+.menu-btn:hover,
+.settings-btn:hover,
+.edit-btn:hover {
+    background: var(--glass-bg);
+    transform: scale(1.05);
+}
+
+.back-btn svg,
+.menu-btn svg,
+.settings-btn svg,
+.edit-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Floating Action Button (FAB) */
+.fab,
+.add-fab {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: none;
+    color: hsl(0, 0%, 100%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px hsla(239, 84%, 67%, 0.3);
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+}
+
+.fab:hover,
+.add-fab:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 20px hsla(239, 84%, 67%, 0.4);
+}
+
+/* Primary Button */
+.btn-primary {
+    background: var(--accent-color);
+    color: hsl(0, 0%, 100%);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px hsla(239, 84%, 67%, 0.4);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--tool-btn-hover-bg);
+    border-color: var(--tool-btn-hover-border);
+}
+
+/* ==========================================
+   3. CARD COMPONENTS
+   ========================================== */
+
+/* Base Card - Glassmorphism Style */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.1);
+}
+
+/* Clickable Card */
+.card-clickable {
+    cursor: pointer;
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.card-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+}
+
+/* Card Title */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+}
+
+/* Card Subtitle */
+.card-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Card Body */
+.card-body {
+    margin-top: 16px;
+}
+
+/* Card Actions */
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+/* ==========================================
+   4. GRID LAYOUTS
+   ========================================== */
+
+/* Standard 2-Column Grid */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 120px;
+}
+
+/* Pinterest/Masonry Style Grid */
+.masonry-grid {
+    column-count: 2;
+    column-gap: 16px;
+    margin-bottom: 120px;
+}
+
+.masonry-grid > * {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    display: inline-block;
+    width: 100%;
+}
+
+/* 3-Column Grid */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* List Layout */
+.list-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 120px;
+}
+
+/* ==========================================
+   5. TABS & NAVIGATION
+   ========================================== */
+
+/* Tab Container */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 0 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+/* Tab Button */
+.tab {
+    flex: 1;
+    min-width: fit-content;
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tab.active {
+    background: var(--accent-color);
+    color: hsl(0, 0%, 100%);
+}
+
+.tab:hover:not(.active) {
+    background: var(--glass-bg);
+}
+
+/* Horizontal Scroll Navigation */
+.scroll-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-nav-item {
+    padding: 12px 22px;
+    background: var(--tool-btn-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--tool-btn-border);
+    border-radius: 24px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.scroll-nav-item:hover,
+.scroll-nav-item.active {
+    background: var(--tool-btn-hover-bg);
+    border-color: var(--tool-btn-hover-border);
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   6. FORM ELEMENTS
+   ========================================== */
+
+/* Input Field */
+.input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px hsla(239, 84%, 67%, 0.1);
+}
+
+.input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Textarea */
+.textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    transition: all 0.3s ease;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px hsla(239, 84%, 67%, 0.1);
+}
+
+/* Select Dropdown */
+.select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Checkbox */
+.checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Toggle Switch */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toggle {
+    position: relative;
+    width: 50px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--tool-btn-bg);
+    transition: 0.3s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--text-primary);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle input:checked + .toggle-slider {
+    background-color: var(--accent-color);
+}
+
+.toggle input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+    background-color: hsl(0, 0%, 100%);
+}
+
+/* ==========================================
+   7. TYPOGRAPHY UTILITIES
+   ========================================== */
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-tertiary {
+    color: var(--text-tertiary);
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+.text-sm {
+    font-size: 0.85rem;
+}
+
+.text-base {
+    font-size: 0.95rem;
+}
+
+.text-lg {
+    font-size: 1.1rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* ==========================================
+   8. SPACING UTILITIES
+   ========================================== */
+
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+.p-8 { padding: 8px; }
+.p-12 { padding: 12px; }
+.p-16 { padding: 16px; }
+.p-20 { padding: 20px; }
+.p-24 { padding: 24px; }
+
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+
+/* ==========================================
+   9. LAYOUT UTILITIES
+   ========================================== */
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ==========================================
+   10. PROGRESS & STATUS COMPONENTS
+   ========================================== */
+
+/* Progress Ring (SVG) */
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    stroke: hsla(0, 0%, 100%, 0.1);
+}
+
+[data-theme="dark"] .progress-ring-bg {
+    stroke: hsla(0, 0%, 100%, 0.1);
+}
+
+.progress-ring-fill {
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--glass-bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Status Badge */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.badge-primary {
+    background: hsla(239, 84%, 67%, 0.15);
+    color: var(--accent-color);
+}
+
+.badge-success {
+    background: hsla(140, 100%, 70%, 0.15);
+    color: hsl(140, 100%, 40%);
+}
+
+.badge-warning {
+    background: hsla(41, 100%, 70%, 0.15);
+    color: hsl(41, 100%, 50%);
+}
+
+.badge-danger {
+    background: hsla(0, 100%, 75%, 0.15);
+    color: hsl(0, 100%, 50%);
+}
+
+/* ==========================================
+   11. MODAL & OVERLAY COMPONENTS
+   ========================================== */
+
+/* Modal Backdrop */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: hsla(0, 0%, 0%, 0.5);
+    z-index: 1000;
+    display: none;
+    align-items: flex-end;
+}
+
+.modal-backdrop.active {
+    display: flex;
+}
+
+/* Modal Container */
+.modal {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 428px;
+    margin: 0 auto;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.modal-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* ==========================================
+   12. EMPTY STATES & MESSAGES
+   ========================================== */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.empty-state-description {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+   13. LOADING STATES
+   ========================================== */
+
+.skeleton {
+    background: linear-gradient(90deg, var(--glass-bg) 25%, var(--tool-btn-hover-bg) 50%, var(--glass-bg) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 8px;
+}
+
+.skeleton-card {
+    height: 120px;
+    border-radius: 20px;
+}
+
+/* Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--glass-border);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================================
+   14. RESPONSIVE UTILITIES
+   ========================================== */
+
+@media (max-width: 428px) {
+    .container {
+        padding: 15px;
+    }
+
+    .grid-2,
+    .masonry-grid {
+        gap: 12px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .page-header {
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .grid-2 {
+        gap: 12px;
+    }
+
+    .masonry-grid {
+        column-gap: 12px;
+    }
+
+    .masonry-grid > * {
+        margin-bottom: 12px;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .tab {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+}
+
+/* ==========================================
+   15. ANIMATION UTILITIES
+   ========================================== */
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease;
+}
+
+.scale-in {
+    animation: scaleIn 0.2s ease;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Smooth transitions */
+.transition {
+    transition: all 0.3s ease;
+}
+
+.transition-fast {
+    transition: all 0.15s ease;
+}
+
+/* ==========================================
+   16. ACCESSIBILITY
+   ========================================== */
+
+/* Focus styles */
+.focusable:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ==========================================
+   END OF DESIGN SYSTEM
+   ========================================== */
